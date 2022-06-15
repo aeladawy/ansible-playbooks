@@ -6,6 +6,6 @@
 
   roles:
     - php
-    - role: php-versions
-      vars:
-        php_version: '7.3'
+#    - role: php-versions
+#      vars:
+#        php_version: '7.3'
