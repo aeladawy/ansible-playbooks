@@ -1,3 +1,2 @@
-# from galaxy
-- name: redhat.rhel_system_roles
-- name: redhat.satellite
+collections:
+  - lucab85.ansible_role_motd
