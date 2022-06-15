@@ -1,0 +1,16 @@
+---
+- name: Deploying basics input and implicit files output
+  hosts: all
+  roles:
+    - redhat.rhel_system_roles.logging
+  vars:
+    logging_inputs:
+      - name: system_input
+        type: basics
+    logging_outputs:
+      - name: files_output
+        type: files
+    logging_flows:
+      - name: flow1
+        inputs: [system_input]
+        outputs: [files_output]
