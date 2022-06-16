@@ -1,11 +1,11 @@
 - name: Install and enable Apache
   hosts: all
   vars:
-    apache_package: httpd
-    apache_service: httpd
-    apache_firewall_http_service: http
-    firewall_package: firewalld
-    firewall_service: firewalld
+#    apache_package: httpd
+#    apache_service: httpd
+#    apache_firewall_http_service: http
+#    firewall_package: firewalld
+#    firewall_service: firewalld
     
   gather_facts: false
   tasks:
