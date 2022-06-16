@@ -3,4 +3,4 @@
   tasks:
     - name: Hello Message
       debug:
-        msg: "{{ survey_var}}"
+        msg: "{{ survey_var }}"
