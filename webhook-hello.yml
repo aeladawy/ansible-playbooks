@@ -1,0 +1,8 @@
+- name: Hello World Sample
+  hosts: all
+  vars:
+    hello_message: TTTTTTTTTTTTTTT
+  tasks:
+    - name: Hello Message
+      debug:
+        msg: "{{ hello_message }}"
