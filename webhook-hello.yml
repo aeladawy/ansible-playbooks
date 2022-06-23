@@ -1,7 +1,7 @@
 - name: Hello World Sample
   hosts: all
   vars:
-    hello_message: TTTTTTTTTTTTTTT
+    hello_message: AAAAAAAA
   tasks:
     - name: Hello Message
       debug:
