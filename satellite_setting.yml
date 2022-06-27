@@ -1,4 +1,4 @@
-- hosts: all
+- hosts: aeladawy-sat610.sysmgmt.lan
   roles:
     - role: redhat.satellite.settings
       vars:
