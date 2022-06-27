@@ -1,0 +1,12 @@
+- hosts: all
+  roles:
+    - role: redhat.satellite.settings
+      vars:
+        satellite_server_url: https://aeladawy-sat610.sysmgmt.lan
+        satellite_username: "admin"
+        satellite_password: "redhat"
+        satellite_settings:
+          - name: destroy_vm_on_host_delete
+            value: true
+          - name: clean_up_failed_deployment
+            value: false
