@@ -1,7 +1,9 @@
 [datacenter1]
 machine1
 machine2
+machine3
 
 [datacenter2]
-machine3
 machine4
+machine5
+machine6
