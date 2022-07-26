@@ -1,12 +1,24 @@
 - hosts: aeladawy-sat610.sysmgmt.lan
-  roles:
-    - role: redhat.satellite.settings
-      vars:
-        satellite_server_url: https://aeladawy-sat610.sysmgmt.lan
-        satellite_username: "admin"
-        satellite_password: "redhat"
-        satellite_settings:
-          - name: destroy_vm_on_host_delete
-            value: true
-          - name: clean_up_failed_deployment
-            value: false
+#  roles:
+#    - role: redhat.satellite.settings
+#      vars:
+#        satellite_server_url: https://aeladawy-sat610.sysmgmt.lan
+#        satellite_username: "admin"
+#        satellite_password: "redhat"
+#        satellite_settings:
+#          - name: destroy_vm_on_host_delete
+#            value: true
+#          - name: clean_up_failed_deployment
+#            value: false
+
+  tasks:
+    - name: "Create the content view - {{ cv.name }}"
+      redhat.satellite.content_view:
+        username: "{{ sat_publisher_username }}"
+        password: "{{ sat_publisher_password }}"
+        server_url: "https://aeladawy-sat610.sysmgmt.lan"
+        organization: "{{ sat_organization }}"
+        validate_certs: "No"
+        name: "{{ cv.name }}"
+        description: "test content view for case 03275407"
+        #repositories: "{{ cv.repositories }}"
