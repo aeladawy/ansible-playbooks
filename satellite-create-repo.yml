@@ -4,7 +4,7 @@
       vars:
         satellite_server_url: https://mpssat6.cee.ral3.lab.eng.rdu2.redhat.com
         satellite_username: "admin"
-        satellite_password: "redhat"
+        satellite_password: '{{ satellite_password }}'
         satellite_organization: "Default Organization"
         satellite_products:
           - name: Red Hat Enterprise Linux for x86_64
