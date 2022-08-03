@@ -2,7 +2,7 @@
   roles:
     - role: redhat.satellite.repositories
       vars:
-        satellite_server_url: https://mpssat6.cee.ral3.lab.eng.rdu2.redhat.com
+        satellite_server_url: '{{ satellite_server }}'
         satellite_username: "admin"
         satellite_password: '{{ satellite_password }}'
         satellite_organization: "Default Organization"
