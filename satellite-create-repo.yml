@@ -1,0 +1,13 @@
+- hosts: all
+  roles:
+    - role: redhat.satellite.repositories
+      vars:
+        satellite_server_url: https://10.1.164.38
+        satellite_username: "admin"
+        satellite_password: "redhat"
+        satellite_organization: "Default Organization"
+        satellite_products:
+          - name: Red Hat Enterprise Linux for x86_64
+            repository_sets:
+              - name: Red Hat Enterprise Linux 8 for x86_64 - AppStream (RPMs)
+                releasever: 8
