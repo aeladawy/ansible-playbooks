@@ -5,7 +5,7 @@
         satellite_server_url: 'https://{{ inventory_hostname }}'
         satellite_username: "admin"
         satellite_password: '{{ satellite_password }}'
-        satellite_organization: "Default Organization"
+        satellite_organization: '{{ organization_name }}'
         satellite_products:
 #          - name: Red Hat Enterprise Linux for x86_64
 #            repository_sets:
