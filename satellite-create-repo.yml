@@ -12,7 +12,7 @@
         repository_sets:
         - name: Red Hat Enterprise Linux 8 for x86_64 - AppStream (RPMs)
           arch: noarch
-          releasever: 8
+          releasever: 8.6
 
 
   tasks:
