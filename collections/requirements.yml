@@ -1,4 +1,5 @@
 collections:
   - name: redhat.satellite
+  - name: ansible.netcommon
 #  - geerlingguy.php_roles
 #  - ansible.tower
