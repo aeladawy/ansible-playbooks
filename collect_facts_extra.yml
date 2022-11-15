@@ -1,38 +1,33 @@
 ---
-# tasks file for Linux OS in gather_info
-#
-# Use these conditions if there are specificities between Linux distributions
-# when: ansible_distribution == 'RedHat' and ansible_distribution_major_version == '6'
-# when: ansible_distribution == 'RedHat' and ansible_distribution_major_version == '7'
-# when: ansible_distribution == 'CentOS' and ansible_distribution_major_version == '7'
-# when: ansible_distribution == 'Debian' and ansible_distribution_major_version == '6'
+- name: collect facts
+  hosts: all
+  tasks:
+    - name: Check that the target is a RHEL 7+ server
+      assert:
+        that:
+          - ansible_distribution == 'RedHat' and ansible_distribution_major_version | int >= 7
+        msg: "The target host {{ inventory_hostname }} is not a RHEL 7+ server !"
 
-- name: Check that the target is a RHEL 7+ server
-  assert:
-    that:
-      - ansible_distribution == 'RedHat' and ansible_distribution_major_version | int >= 7
-    msg: "The target host {{ inventory_hostname }} is not a RHEL 7+ server !"
-
-- name: Network info
-  debug:
-    msg: "Here are all the IPs available on the host {{ ansible_hostname }} {{':'}} {{ ansible_all_ipv4_addresses }}"
-
-- name: Volume groups info
-  debug:
-    msg: "Here are all the VGs available on the host {{ ansible_hostname }} {{':'}} {{ ansible_lvm.vgs | to_json }}"
-
-- name: FS info
-  debug:
-    msg: "Here are all the FS available on the host {{ ansible_hostname }} {{':'}} {% for mp in ansible_mounts %}['{{ mp.mount }}'{{':'}}'{{ mp.size_total | filesizeformat(binary=true) }}']{% endfor %}"
-
-- block:
-    - name: Processes info
-      shell: "ps -eo pid,command | egrep -i 'CFTMAIN|uxioserv|uxeepsrv|omv_bdc' | grep -v grep"
-      register: process
-      ignore_errors: yes
-      become: true
-    
-    - name: Print process
+    - name: Network info
       debug:
-        msg: "Here are the list of needed processes{{':'}} {{ process.stdout_lines }}"
+        msg: "Here are all the IPs available on the host {{ ansible_hostname }} {{':'}} {{ ansible_all_ipv4_addresses }}"
+
+    - name: Volume groups info
+      debug:
+        msg: "Here are all the VGs available on the host {{ ansible_hostname }} {{':'}} {{ ansible_lvm.vgs | to_json }}"
+
+    - name: FS info
+      debug:
+        msg: "Here are all the FS available on the host {{ ansible_hostname }} {{':'}} {% for mp in ansible_mounts %}['{{ mp.mount }}'{{':'}}'{{ mp.size_total | filesizeformat(binary=true) }}']{% endfor %}"
+
+    - block:
+        - name: Processes info
+          shell: "ps -eo pid,command | egrep -i 'CFTMAIN|uxioserv|uxeepsrv|omv_bdc' | grep -v grep"
+          register: process
+          ignore_errors: yes
+          #become: true
+    
+        - name: Print process
+          debug:
+            msg: "Here are the list of needed processes{{':'}} {{ process.stdout_lines }}"
 
