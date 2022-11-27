@@ -5,3 +5,6 @@
   tasks:
     - name: update facts
       setup:
+    -name: pause the task
+      pause:
+        minutes: 5
