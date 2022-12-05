@@ -6,4 +6,4 @@ collections:
 #  - name: community.vmware
 #    version: '1.9.1-dev8'
   - name: community.general
-    version: 6.0.1
+
