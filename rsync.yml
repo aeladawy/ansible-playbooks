@@ -7,3 +7,4 @@
       ansible.posix.synchronize:
         src: /var/lib/awx/work/ibm-power_hmc-1.6.0.tar.gz
         dest: /tmp/
+        rsync_path: /usr/bin/rsync
