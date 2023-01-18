@@ -6,4 +6,4 @@
     - name: Synchronization of src on the control machine to dest on the remote hosts
       ansible.posix.synchronize:
         src: /var/lib/awx/work/ibm-power_hmc-1.6.0.tar.gz
-        dest: /tmp
+        dest: /tmp/
