@@ -5,5 +5,5 @@ collections:
 #  - ansible.tower
 #  - name: community.vmware
 #    version: '1.9.1-dev8'
-  - name: community.general
+#  - name: community.general
 
