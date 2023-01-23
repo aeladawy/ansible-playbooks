@@ -1,0 +1,7 @@
+---
+- name: collect facts
+  hosts: all
+  tasks:
+    - name: Get all virtual machine size info in eastus
+      azure_rm_virtualmachinesize_info:
+        location: eastus
