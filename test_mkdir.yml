@@ -1,0 +1,5 @@
+---
+- name: collect facts
+  hosts: all
+  tasks:
+  
