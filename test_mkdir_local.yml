@@ -1,0 +1,16 @@
+---
+- name: collect facts
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: create iso directories
+      file:
+        name: '{{ item }}'
+        owner: nobody
+        group: nobody
+        mode:  "0755"
+        state: directory
+      loop:
+        - /srv/rti/boot-iso
+        - /srv/rti/boot-iso/rti-ldapp01
+        - /srv/rti/boot-iso-src/rti-ldapp01
