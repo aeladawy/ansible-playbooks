@@ -14,4 +14,4 @@
         - /srv/rti/boot-iso
         - /srv/rti/boot-iso/rti-ldapp01
         - /srv/rti/boot-iso-src/rti-ldapp01
-  delegate_to: 127.0.0.1
+      delegate_to: 127.0.0.1
