@@ -6,7 +6,7 @@
   tasks:
     - name: create iso directories
       file:
-        name: '{{ item }}'
+        path: '{{ item }}'
         owner: nobody
         group: nobody
         mode:  "0755"
