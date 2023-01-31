@@ -1,7 +1,7 @@
 ---
 - name: create dir in tower
   gather_facts: false
-  hosts: localhost
+  hosts: tower
   connection: local
   tasks:
     - name: create iso directories
@@ -17,5 +17,8 @@
         - /srv/rti/boot-iso-src/rti-ldapp01
       delegate_to: tower
     - name: list dirs
-      command: ls -lZ /srv/rti ; hostname
+      command: ls -lZ /srv/rti
+      delegate_to: tower
+    - name: hostname list
+      command: hostname
       delegate_to: tower
