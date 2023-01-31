@@ -16,5 +16,6 @@
         - /srv/rti/boot-iso/rti-ldapp01
         - /srv/rti/boot-iso-src/rti-ldapp01
       delegate_to: tower
-    - command: ls -lZ /srv/rti
+    - name: list dirs
+      command: ls -lZ /srv/rti
       delegate_to: tower
