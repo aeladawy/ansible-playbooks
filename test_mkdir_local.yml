@@ -1,5 +1,5 @@
 ---
-- name: collect facts
+- name: create dir in tower
   gather_facts: false
   hosts: localhost
   connection: local
