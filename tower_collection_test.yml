@@ -1,23 +1,23 @@
 - name: Playbook to configure ansible tower organizations
   hosts: localhost
-  collections:
-    - redhat_cop.tower_configuration
-    - ansible.tower
+#  collections:
+#    - redhat_cop.tower_configuration
+#    - ansible.tower
   vars:
-    tower_hostname: https://tower.example.com
+    tower_hostname: https://aeladawy-tower.example.com/
     tower_username: admin
-    tower_password: password
+    tower_password: redhat
     verify_ssl: False
-    tower_organizations:
-      - name: Satellite
-      - name: Default
-    tower_projects:
-      - name: Demo project
-        organization: Default
-        scm_branch: master
-        scm_type: git
-        scm_update_on_launch: true
-        scm_url: https://github.com/ansible/tower-example.git
-  roles:
-    - organization
-    - projects
+#    tower_organizations:
+#      - name: Satellite
+#      - name: Default
+  tasks:
+    - name: Add webhook notification
+      ansible.tower.tower_notification:
+        name: webhook notification
+        notification_type: webhook
+        notification_configuration:
+          url: http://www.example.com/hook
+          headers:
+            X-Custom-Header: value123
+        state: present    
