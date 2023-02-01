@@ -1,0 +1,22 @@
+- name: Playbook to configure ansible tower organizations
+  hosts: localhost
+  collections:
+    - redhat_cop.tower_configuration
+    - ansible.tower
+  vars:
+    tower_hostname: https://tower.example.com
+    tower_username: admin
+    tower_password: password
+    tower_organizations:
+      - name: Satellite
+      - name: Default
+    tower_projects:
+      - name: Demo project
+        organization: Default
+        scm_branch: master
+        scm_type: git
+        scm_update_on_launch: true
+        scm_url: https://github.com/ansible/tower-example.git
+  roles:
+    - organization
+    - projects
