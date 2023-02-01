@@ -7,6 +7,7 @@
     tower_hostname: https://tower.example.com
     tower_username: admin
     tower_password: password
+    verify_ssl: False
     tower_organizations:
       - name: Satellite
       - name: Default
