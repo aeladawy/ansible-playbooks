@@ -1,5 +1,5 @@
 - name: Playbook to configure ansible tower organizations
-  hosts: localhost
+  hosts: all
 #  collections:
 #    - redhat_cop.tower_configuration
 #    - ansible.tower
