@@ -8,7 +8,7 @@
 
   tasks:
     - name: Add webhook notification
-      ansible.tower.tower_notification:
+      ansible.tower.tower_notification_template:
         name: webhook notification
         organization: test_org
         notification_type: webhook
