@@ -1,6 +1,12 @@
 - name: Playbook to configure ansible tower organizations
   hosts: all
   connection: local
+  vars:
+    host: https://aeladawy-tower.example.com/
+    username: admin
+    password: redhat
+    verify_ssl: false
+
   tasks:
     - name: Add webhook notification
       ansible.tower.tower_notification:
@@ -11,4 +17,4 @@
           url: http://www.example.com/hook
           headers:
             X-Custom-Header: value123
-        state: present 
+        state: present
