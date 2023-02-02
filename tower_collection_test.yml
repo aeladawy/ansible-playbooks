@@ -1,6 +1,5 @@
 - name: Playbook to configure ansible tower organizations
   hosts: all
-  connection: local
   vars:
     host: https://aeladawy-tower.example.com/
     username: admin
