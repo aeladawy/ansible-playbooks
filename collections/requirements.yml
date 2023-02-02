@@ -1,7 +1,7 @@
 ---
 collections:
   - name: ansible.tower
-    version: '3.7.3'
+    #version: '3.7.3'
 #  - name: ansible.netcommon
 #  - geerlingguy.php_roles
 #  - ansible.tower
