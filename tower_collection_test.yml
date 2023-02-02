@@ -3,14 +3,14 @@
 #  collections:
 #    - redhat_cop.tower_configuration
 #    - ansible.tower
-  vars:
-    tower_hostname: https://aeladawy-tower.example.com/
-    tower_username: admin
-    tower_password: redhat
-    verify_ssl: False
-#    tower_organizations:
+#  vars:
+#    tower_hostname: https://aeladawy-tower.example.com/
+#    tower_username: admin
+#    tower_password: redhat
+#    verify_ssl: False
+    tower_organizations:
 #      - name: Satellite
-#      - name: Default
+      - name: test_org
   tasks:
     - name: Add webhook notification
       ansible.tower.tower_notification:
