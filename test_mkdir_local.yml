@@ -19,6 +19,3 @@
     - name: list dirs
       command: ls -lZ /srv/rti
       delegate_to: tower
-    - name: hostname list
-      command: hostname
-      delegate_to: tower
