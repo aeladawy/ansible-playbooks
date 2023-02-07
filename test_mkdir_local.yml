@@ -7,8 +7,8 @@
     - name: create iso directories
       file:
         path: '{{ item }}'
-        owner: nobody
-        group: nobody
+        owner: root
+        group: root
         mode:  "0755"
         state: directory
       loop:
