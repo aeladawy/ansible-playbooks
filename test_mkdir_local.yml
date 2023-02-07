@@ -6,15 +6,15 @@
   tasks:
     - name: create iso directories
       file:
-        path: '{{ item }}'
+        path: /srv/rti/boot-iso
         owner: root
         group: root
         mode:  "0755"
         state: directory
-      loop:
-        - /srv/rti/boot-iso
-        - /srv/rti/boot-iso/rti-ldapp01
-        - /srv/rti/boot-iso-src/rti-ldapp01
+#      loop:
+#        - /srv/rti/boot-iso
+#        - /srv/rti/boot-iso/rti-ldapp01
+#        - /srv/rti/boot-iso-src/rti-ldapp01
       delegate_to: tower
     - name: list dirs
       command: ls -lZ /srv/rti
