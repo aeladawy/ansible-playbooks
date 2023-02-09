@@ -7,6 +7,7 @@
       get_url:
         url: http://aeladawy-rhel8-tower-client.example.com/test.zip
         dest: /opt/ansible_files/mbse/test.zip
+        force: true
 
     - name: copy file to folder
       copy:
