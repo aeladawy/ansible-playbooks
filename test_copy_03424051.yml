@@ -3,6 +3,10 @@
   hosts: tower
   connection: local
   tasks:
+  
+    - name: "get the stats of the /opt/ansible_files/mbse/test.zip"
+      stat:
+        path: /opt/ansible_files/mbse/test.zip
     - name: Download to local download folder
       get_url:
         url: http://aeladawy-rhel8-tower-client.example.com/test.zip
@@ -10,9 +14,7 @@
         force: true
         mode: '0664'
 
-    - name: "get the stats of the /opt/ansible_files/mbse/test.zip"
-      stat:
-        path: /opt/ansible_files/mbse/test.zip
+
 
     - name: copy file to folder
       copy:
