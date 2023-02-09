@@ -7,7 +7,7 @@
     - name: "get the stats of the /opt/ansible_files/mbse/test.zip"
       stat:
         path: /opt/ansible_files/mbse/test.zip
-        register: stat_out
+      register: stat_out
 
     - name: "output the 'stat_out' variable"
       debug:
