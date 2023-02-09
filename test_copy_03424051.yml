@@ -8,7 +8,7 @@
         url: http://aeladawy-rhel8-tower-client.example.com/test.zip
         dest: /opt/ansible_files/mbse/test.zip
         force: true
-        mode: 664
+        mode: '0664'
 
     - name: copy file to folder
       copy:
