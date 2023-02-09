@@ -10,6 +10,10 @@
         force: true
         mode: '0664'
 
+    - name: "get the stats of the /opt/ansible_files/mbse/test.zip"
+      stat:
+        path: /opt/ansible_files/mbse/test.zip
+
     - name: copy file to folder
       copy:
         src: /opt/ansible_files/mbse/test.zip
