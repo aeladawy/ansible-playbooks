@@ -1,0 +1,14 @@
+---
+- name: Playbook to test download and copy file
+  hosts: tower
+  connection: local
+  tasks:
+    - name: Download to local download folder
+      get_url:
+        url: http://aeladawy-rhel8-tower-client.example.com/test.zip
+        dest: /opt/ansible_files/mbse/test.zip
+
+    - name: copy file to folder
+      copy:
+        src: /opt/ansible_files/mbse/test.zip
+        dest: /tmp/test.zip
