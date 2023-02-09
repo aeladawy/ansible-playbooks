@@ -7,6 +7,12 @@
     - name: "get the stats of the /opt/ansible_files/mbse/test.zip"
       stat:
         path: /opt/ansible_files/mbse/test.zip
+        register: stat_out
+
+    - name: "output the 'stat_out' variable"
+      debug:
+        msg: "{{ stat_out }}"
+        
     - name: Download to local download folder
       get_url:
         url: http://aeladawy-rhel8-tower-client.example.com/test.zip
