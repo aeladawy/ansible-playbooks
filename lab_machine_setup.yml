@@ -11,20 +11,20 @@
 
     - name: register the machine
       ansible.builtin.command: subscription-manager register --org=1979710 --activationkey=aeladawy-tower-ak --force
-
-    - name: Upgrade all packages
-      ansible.builtin.yum:
-        name: '*'
-        state: latest
-      notify:
-        - reboot the machine
-
+      
     - name: Install packages
       ansible.builtin.yum:
         name:
           - vim
           - mlocate
           - net-tools
+          
+    - name: Upgrade all packages
+      ansible.builtin.yum:
+        name: '*'
+        state: latest
+      notify:
+        - reboot the machine
 
   handlers:
     - name: reboot the machine
