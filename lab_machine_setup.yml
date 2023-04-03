@@ -5,7 +5,7 @@
   tasks:
     - name: set hostname
       ansible.builtin.hostname:
-        name: "{{ new_machine_hostname }}"
+        name: "{{ inventory_hostname }}"
       notify:
         - reboot the machine
 
