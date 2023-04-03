@@ -20,11 +20,11 @@
         - reboot the machine
 
     - name: Install packages
-        ansible.builtin.yum:
-          name:
-            - vim
-            - mlocate
-            - net-tools
+      ansible.builtin.yum:
+        name:
+          - vim
+          - mlocate
+          - net-tools
 
   handlers:
     - name: reboot the machine
