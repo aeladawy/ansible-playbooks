@@ -1,0 +1,15 @@
+---
+- name: Get hub db settings
+  hosts: all
+  tasks:
+    - name: Get hub database settings
+      shell: "grep '^DATABASES' /etc/pulp/settings.py"
+      register: ah_database_settings
+
+    - name: Ingest hub database settings
+      set_fact:
+        automationhub_db_settings: "{{ ah_database_settings.stdout | regex_replace('DATABASES\\s+= ', '') }}"
+
+    - name: show db settings
+      ansible.builtin.debug:
+        var: automationhub_db_settings
