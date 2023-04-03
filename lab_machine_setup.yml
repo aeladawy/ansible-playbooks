@@ -1,0 +1,31 @@
+---
+- name: Machine setup
+  gather_facts: false
+  hosts: all
+  tasks:
+    - name: set hostname
+      ansible.builtin.hostname:
+        name: "{{ inventory_hostname }}"
+      notify:
+        - reboot the machine
+
+    - name: register the machine
+      ansible.builtin.command: subscription-manager register --org=1979710 --activationkey=aeladawy-tower-ak --force
+
+    - name: Upgrade all packages
+      ansible.builtin.yum:
+        name: '*'
+        state: latest
+      notify:
+        - reboot the machine
+
+    - name: Install packages
+        ansible.builtin.yum:
+          name:
+            - vim
+            - mlocate
+            - net-tools
+
+  handlers:
+    - name: reboot the machine
+      ansible.builtin.reboot:
