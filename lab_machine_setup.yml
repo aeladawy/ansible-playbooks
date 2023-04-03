@@ -1,6 +1,5 @@
 ---
 - name: Machine setup
-  gather_facts: false
   hosts: all
   tasks:
     - name: set hostname
