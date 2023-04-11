@@ -1,6 +1,6 @@
 ---
 collections:
-#  - name: ansible.tower
+  - name: infoblox.nios_modules
     #version: '3.7.3'
 #  - name: ansible.netcommon
 #  - geerlingguy.php_roles
