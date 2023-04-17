@@ -9,11 +9,14 @@
       ansible.builtin.get_url:
         url: https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.73/bin/apache-tomcat-9.0.73.tar.gz
         dest: /var/lib/awx/jobs/
-        
+
     - name: test unarchive file
       ansible.builtin.unarchive:
         src: /var/lib/awx/jobs/apache-tomcat-9.0.73.tar.gz
         dest: /var/lib/awx/jobs/
+
+    - name: list /var/lib/awx/jobs/ directory content
+      command: ls /var/lib/awx/jobs/
 
     - name: test wait_for module
       ansible.builtin.wait_for:
