@@ -1,0 +1,10 @@
+---
+- name: create dir in tower
+  gather_facts: false
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: test wait_for module
+      ansible.builtin.wait_for:
+        timeout: 300
+      delegate_to: localhost
