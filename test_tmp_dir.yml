@@ -8,3 +8,8 @@
       ansible.builtin.unarchive:
         src: https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.73/bin/apache-tomcat-9.0.73.tar.gz
         dest: /runner/
+
+    - name: test wait_for module
+      ansible.builtin.wait_for:
+        timeout: 60
+      delegate_to: localhost
