@@ -26,7 +26,9 @@
       vars:
         plt_j_version: "{{ plt_tcgi_java_version }}"
         plt_j_base_path: "{{ plt_tcgi_build_dir }}"
-
+    - name: wait
+      ansible.builtin.wait_for:
+        timeout: 120
     - name: "Create web.xml"
       ansible.builtin.copy:
         dest: "{{ plt_th_tomcat_home }}/conf/web.xml"
