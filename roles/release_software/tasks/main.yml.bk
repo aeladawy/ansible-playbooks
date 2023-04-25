@@ -1,0 +1,37 @@
+---
+# tasks file for plt_release_software
+- name: "Check variables are set for role plt_release_software for {{ plt_rs_name }}"
+  ansible.builtin.fail:
+    msg: "Variable '{{ item.name }}' is not defined or empty!"
+  when: "( item.var is undefined) or ( item.var is none ) or ( item.var   | trim == '')"
+  with_items:
+    - var: "{{ plt_rs_base_path }}"
+      name: "plt_rs_base_path"
+    - var: "{{ plt_rs_name }}"
+      name: "plt_rs_name"
+    - var: "{{ plt_rs_release_name }}"
+      name: "plt_rs_release_name"
+    - var: "{{ plt_rs_keep_releases }}"
+      name: "plt_rs_keep_releases"
+    - var: "{{ plt_rs_repository_name }}"
+      name: "plt_rs_repository_name"
+    - var: "{{ plt_rs_software_group_id }}"
+      name: "plt_rs_software_group_id"
+    - var: "{{ plt_rs_software_artifact_id }}"
+      name: "plt_rs_software_artifact_id"
+    - var: "{{ plt_rs_software_version }}"
+      name: "plt_rs_software_version"
+    - var: "{{ plt_rs_software_extension }}"
+      name: "plt_rs_software_extension"
+
+- name: Create local download dir
+  ansible.builtin.file:
+    path: "{{ playbook_dir }}/files"
+    state: "directory"
+    mode: 0750
+  delegate_to: localhost
+  become: false
+
+- name: "Call release_software for linux"
+  ansible.builtin.include_tasks: linux.yml
+  when: ansible_os_family != "Windows"

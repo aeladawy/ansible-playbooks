@@ -1,0 +1,22 @@
+---
+# The java version to install.
+plt_j_version: "{{ plt_java_version }}"
+
+# Base directory to install the java.
+plt_j_base_path: "{{ app_java_bin_base_dir | default ('/opt/platform') }}"
+
+# The name of the java folder.
+plt_j_name: "{{ app_java_bin_name | default('plt-java') }}"
+
+# The number of releases to keep.
+plt_j_keep_releases: "0"
+
+# The classifier of the java
+plt_j_classifier: "{{ app_java_classifier | default('linux-x64') }}"
+
+# Extension of the java
+plt_j_extension: "{{ app_java_extension | default('tar.gz') }}"
+
+# The vendor of the java
+plt_j_vendor: "{{ app_java_vendor | default('oracle') }}"
+...

@@ -1,0 +1,55 @@
+---
+# tasks file for plt_release_software
+- name: "Release: prepare for {{ plt_rs_name }}"
+  vwfs_jap.core.release_software_helper:
+    state: "prepare"
+    path: "{{ plt_rs_path }}"
+    release: "{{ plt_rs_release_name }}"
+    shared_folders: "{{ plt_rs_shared_folders }}"
+    clean: "{{ plt_rs_clean_releases }}"
+    keep_releases: "{{ plt_rs_keep_releases }}"
+
+- name: "Download artifact: {{ plt_rs_software_file_name }} from repository"
+  community.general.maven_artifact:
+  run_once: true
+  args:
+    repository_url: "{{ plt_rs_repository_url }}/{{ plt_rs_repository_name }}"
+    group_id: "{{ plt_rs_software_group_id }}"
+    artifact_id: "{{ plt_rs_software_artifact_id }}"
+    version: "{{ plt_rs_software_version }}"
+    extension: "{{ plt_rs_software_extension }}"
+    classifier: "{{ plt_rs_software_classifier| default() }}"
+    dest: "{{ playbook_dir }}/files/{{ plt_rs_software_file_name }}"
+    state: present
+    validate_certs: false
+    username: "{{ plt_rs_artifact_repo_user }}"
+    password: "{{ plt_rs_artifact_repo_password }}"
+    timeout: 30
+  register: plt_rs_download
+  until: not plt_rs_download.failed
+  delay: 5
+  retries: 10
+  become: false
+  delegate_to: localhost
+
+- name: "Unarchive artifact: {{ plt_rs_software_file_name }}"
+  ansible.builtin.unarchive:
+    src: "{{ playbook_dir }}/files/{{ plt_rs_software_file_name }}"
+    dest: "{{ plt_rs_release_path }}"
+    creates: "{{ plt_rs_final_release_folder_name }}"
+
+- name: "Delete artifact"
+  ansible.builtin.file:
+    path: "{{ playbook_dir }}/files/{{ plt_rs_software_file_name }}"
+    state: absent
+  run_once: true
+  become: false
+  delegate_to: localhost
+
+- name: "Release: finalize for {{ plt_rs_name }}"
+  vwfs_jap.core.release_software_helper:
+    state: "finalize"
+    path: "{{ plt_rs_path }}"
+    release: "{{ plt_rs_release_name }}"
+    clean: "{{ plt_rs_clean_releases }}"
+    keep_releases: "{{ plt_rs_keep_releases }}"

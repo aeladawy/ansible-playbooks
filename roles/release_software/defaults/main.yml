@@ -1,0 +1,35 @@
+---
+# defaults file for release_software
+
+# Base directory to install the platform software
+plt_rs_base_path: "{{ (ansible_os_family == 'Windows') | ternary('D:\\platform','/opt/platform') }}"
+
+# Shared folders to create
+plt_rs_shared_folders:
+
+# name of the software
+plt_rs_name: "software"
+
+# The software release name when unpacked
+plt_rs_release_name:
+
+# How many releases to keep
+plt_rs_keep_releases: "0"
+
+# Artifactory repository name
+plt_rs_repository_name: "PLT_JAP"
+
+# The group id of the software to install
+plt_rs_software_group_id:
+
+# The arifact id of the software to install
+plt_rs_software_artifact_id:
+
+# The software version
+plt_rs_software_version:
+
+# The software extension
+plt_rs_software_extension: "tgz"
+
+# The software classifier
+plt_rs_software_classifier:

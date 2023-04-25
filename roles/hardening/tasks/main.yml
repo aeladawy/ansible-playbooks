@@ -1,0 +1,22 @@
+---
+# tasks file for hardening
+- name: "TOMCAT_VWFS_14 - Activate the HttpHeaderSecurityFilter - filter"
+  xml:
+  community.general.xml:
+    dest: "{{ plt_th_tomcat_home }}/conf/web.xml"
+    xpath: "/x:web-app/x:filter"
+    pretty_print: yes
+    namespaces:
+      x: http://xmlns.jcp.org/xml/ns/javaee
+    add_children:
+      - filter-name: 'httpHeaderSecurity'
+      - filter-class: 'org.apache.catalina.filters.HttpHeaderSecurityFilter'
+      - async-supported: 'true'
+      - init-param
+        _:
+          - param-name: 'hstsMaxAgeSeconds'
+          - param-value: '31536000'
+      - init-param
+        _:
+          - param-name: 'hstsIncludeSubDomains'
+          - param-value: 'true'

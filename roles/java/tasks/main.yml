@@ -1,0 +1,62 @@
+---
+- name: "Check variables are set for role java"
+  ansible.builtin.fail:
+    msg: "Variable '{{ item.name }}' is not defined or empty!"
+  when: "( item.var is undefined) or ( item.var is none ) or ( item.var | trim == '')" # noqa 602
+  loop:
+    - var: "{{ plt_j_version }}"
+      name: "plt_j_version"
+    - var: "{{ plt_j_base_path }}"
+      name: "plt_j_base_path"
+    - var: "{{ plt_j_name }}"
+      name: "plt_j_name"
+    - var: "{{ plt_j_keep_releases }}"
+      name: "plt_j_keep_releases"
+    - var: "{{ plt_j_vendor }}"
+      name: "plt_j_vendor"
+
+- name: "Check variable plt_j_vendor modes for {{ plt_j_vendor }}"
+  ansible.builtin.fail:
+    msg: "Vendor {{ plt_j_vendor }} for plt_j_vendor variable is not supporrted use one of: oracle, redhat"
+  when: plt_j_vendor not in ('oracle', 'redhat')
+
+- name: "Set artifacts for oracle"
+  ansible.builtin.set_fact:
+    plt_j_groupid: com.oracle
+    plt_j_artifact_id: jdk
+    plt_j_release_name: "jdk{{ plt_j_version }}"
+  when: plt_j_vendor == 'oracle'
+
+- name: "Set artifacts for redhat"
+  ansible.builtin.set_fact:
+    plt_j_groupid: com.redhat
+    plt_j_artifact_id: openjdk
+    plt_j_release_name: "openjdk{{ plt_j_version }}"
+  when: plt_j_vendor == 'redhat'
+
+- name: "Download and unarchive the java with version: {{ plt_j_version }}"
+  ansible.builtin.include_role:
+    name: release_software
+  vars:
+    plt_rs_base_path: "{{ plt_j_base_path }}"
+    plt_rs_name: "{{ plt_j_name }}"
+    plt_rs_release_name: "{{ plt_j_release_name }}"
+    plt_rs_software_group_id: "{{ plt_j_groupid }}"
+    plt_rs_software_artifact_id: "{{ plt_j_artifact_id }}"
+    plt_rs_software_version: "{{ plt_j_version }}"
+    plt_rs_software_classifier: "{{ plt_j_classifier }}"
+    plt_rs_software_extension: "{{ plt_j_extension }}"
+    plt_rs_keep_releases: "{{ plt_j_keep_releases }}"
+
+- name: "Link cacerts Linux older version 10"
+  ansible.builtin.include_tasks: link_cacerts_linux.yml
+  when: ansible_os_family != "Windows" and plt_j_version is version('1.9.0', 'lt')
+  vars:
+    tmp_cacert_path: "{{ plt_j_current_dir }}/jre/lib/security/cacerts"
+
+- name: "Link cacerts Linux new and equal 10"
+  ansible.builtin.include_tasks: link_cacerts_linux.yml
+  when: ansible_os_family != "Windows" and plt_j_version is version('10', 'ge')
+  vars:
+    tmp_cacert_path: "{{ plt_j_current_dir }}/lib/security/cacerts"
+...

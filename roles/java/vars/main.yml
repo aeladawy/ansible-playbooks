@@ -1,0 +1,14 @@
+---
+# CACERT file location for linux
+plt_j_cacerts_file_linux: '/etc/pki/vwfs_cacert'
+
+# CACERT file location for windows
+plt_j_cacerts_file_windows: "C:\\Windows\\ccm-FSAG\\Certificates\\vwfs_cacert"
+
+# Operating system dir separator
+plt_j_separator: "{{ (ansible_os_family == 'Windows') | ternary('\\\\','/') }}"
+
+# Current folder
+plt_j_current_dir: "{{ plt_j_base_path }}{{ plt_j_separator }}{{ plt_j_name }}{{ plt_j_separator }}current"
+
+...

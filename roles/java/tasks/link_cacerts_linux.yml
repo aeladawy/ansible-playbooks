@@ -1,0 +1,24 @@
+---
+- name: "Check that the cacert file exists"
+  ansible.builtin.stat:
+    path: "{{ tmp_cacert_path }}"
+  register: cacert_file
+
+# - name: "Debug found"
+#  debug:
+#    var: cacert_file
+
+- name: "Remove cacert if not a link"
+  ansible.builtin.file:
+    path: "{{ tmp_cacert_path }}"
+    state: absent
+  when: cacert_file.stat.exists and ((not cacert_file.stat.islnk) or (cacert_file.stat.islnk and cacert_file.stat.lnk_target != plt_j_cacerts_file_linux))
+
+  #- name: "Create link to {{ plt_j_cacerts_file_linux }}"
+  #ansible.builtin.file:
+  #  src: "{{ plt_j_cacerts_file_linux }}"
+  #  dest: "{{ tmp_cacert_path }}"
+  #  force: true
+  #  state: link
+
+...

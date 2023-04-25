@@ -1,0 +1,25 @@
+---
+# tasks file for plt_release_software
+
+- name: "Download artifact: {{ plt_rs_software_file_name }} from repository"
+  ansible.builtin.get_url:
+    url: "https://download.oracle.com/java/17/archive/jdk-17.0.4_linux-x64_bin.tar.gz"
+    dest: "{{ playbook_dir }}/files/{{ plt_rs_software_file_name }}"
+    #    state: present
+  register: plt_rs_download
+  delegate_to: localhost
+
+- name: "Unarchive artifact: {{ plt_rs_software_file_name }}"
+  ansible.builtin.unarchive:
+    src: "{{ playbook_dir }}/files/{{ plt_rs_software_file_name }}"
+    dest: "{{ plt_rs_release_path }}"
+    creates: "{{ plt_rs_final_release_folder_name }}"
+
+- name: "Delete artifact"
+  ansible.builtin.file:
+    path: "{{ playbook_dir }}/files/{{ plt_rs_software_file_name }}"
+    state: absent
+  run_once: true
+  become: false
+  delegate_to: localhost
+

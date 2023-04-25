@@ -1,0 +1,27 @@
+---
+# vars file for release_software
+
+# The main directory
+plt_rs_path: "{{ plt_rs_base_path }}{{ (ansible_os_family == 'Windows') | ternary('\\\\','/') }}{{ plt_rs_name }}"
+
+# release path
+#plt_rs_release_path: "{{ plt_rs_path }}{{ (ansible_os_family == 'Windows') | ternary('\\\\','/') }}releases"
+plt_rs_release_path: "{{ plt_tcgi_build_dir }}/plt-java/releases"
+
+# Final release folder extracted
+plt_rs_final_release_folder_name: "{{ plt_rs_release_path }}{{ (ansible_os_family == 'Windows') | ternary('\\\\','/') }}{{ plt_rs_release_name }}"
+
+# Clean old releases
+plt_rs_clean_releases: "True"
+
+# Url of the artifactory repository for java
+plt_rs_repository_url: https://artifactory.fs01.vwf.vwfs-ad/artifactory
+
+# Artifactory user
+plt_rs_artifact_repo_user: 'DKX1S69209'
+
+# Artifactory user password
+plt_rs_artifact_repo_password: "{{ lookup('cark', 'IH-IOPA-A_AMS_P|DKX1S69209@fs01.vwf.vwfs-ad') }}"
+
+# The filename of the locally stored filename
+plt_rs_software_file_name: "{{ plt_rs_software_artifact_id }}-{{ plt_rs_software_version }}.{{ plt_rs_software_extension }}"
