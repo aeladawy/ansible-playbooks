@@ -1,0 +1,37 @@
+- name: "03464069 - Files in ~awx/jobs are not deleted after deplyoment"
+  hosts: localhost
+  connection: local
+  vars: 
+    plt_tcgi_build_dir: "{{ playbook_dir }}/builds"
+    plt_th_tomcat_home: "{{ plt_tcgi_build_dir }}"
+    plt_tcgi_java_version: '17.0.4'
+  tasks:
+    - name: "Delete the build directory"
+      ansible.builtin.file:
+        path: "{{ plt_tcgi_build_dir }}"
+        state: "absent"
+
+    - name: "Create the build directory"
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: "directory" 
+      loop:
+        - "{{ plt_tcgi_build_dir }}"
+        - "{{ plt_th_tomcat_home }}/conf"
+        - "{{ plt_tcgi_build_dir }}/plt-java/releases"
+
+    - name: "Install oracle jdk"
+      include_role:
+        name: java
+      vars:
+        plt_j_version: "{{ plt_tcgi_java_version }}"
+        plt_j_base_path: "{{ plt_tcgi_build_dir }}"
+
+    - name: "Create web.xml"
+      ansible.builtin.copy:
+        dest: "{{ plt_th_tomcat_home }}/conf/web.xml"
+        content: "<xml></xml>"
+
+    - name: "Do the hardening of the tomcat instance"
+      include_role:
+        name: hardening
