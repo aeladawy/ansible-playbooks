@@ -1,0 +1,17 @@
+- name: create satellite hostcollections
+  hosts: all
+  connection: local
+  gather_facts: no
+  tasks:
+    - name: create satellite hostcollections
+      redhat.satellite.host_collection:
+        username: "admin"
+        password: "redhat"
+        server_url: "https://sbransible-satellite6.example.com"
+        name: "hcollection{{ item }}"
+        description: "host collection for servers"
+        organization: "dorganization"
+        state: present
+        validate_certs: false
+      with_sequence:
+        - "101-250"
