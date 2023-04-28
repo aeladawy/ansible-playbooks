@@ -7,6 +7,6 @@
     - name: pause for {{ wait_seconds | int }} second(s)
       ansible.builtin.pause:
         seconds: "{{ wait_seconds | int }}"
-- name: message
+    - name: "message_test"
       ansible.builtin.debug:
         msg: "The end"
