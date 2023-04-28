@@ -7,17 +7,17 @@
         name: "{{ new_machine_hostname }}"
       notify:
         - reboot the machine
-
+        
     - name: register the machine
       ansible.builtin.command: subscription-manager register --org=1979710 --activationkey=aeladawy-tower-ak --force
-      
+
     - name: Install packages
       ansible.builtin.yum:
         name:
           - vim
           - mlocate
           - net-tools
-          
+      
     - name: Upgrade all packages
       ansible.builtin.yum:
         name: '*'
