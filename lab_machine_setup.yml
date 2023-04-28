@@ -7,9 +7,10 @@
         name: "{{ new_machine_hostname }}"
       notify:
         - reboot the machine
-        
+
     - name: register the machine
       ansible.builtin.command: subscription-manager register --org=1979710 --activationkey=aeladawy-tower-ak --force
+      when: ansible_distribution == "RedHat"    
 
     - name: Install packages
       ansible.builtin.yum:

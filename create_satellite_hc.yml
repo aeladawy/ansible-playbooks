@@ -1,7 +1,7 @@
 - name: create satellite hostcollections
   hosts: all
   connection: local
-  gather_facts: no
+  gather_facts: true
   tasks:
     - name: create satellite hostcollections
       redhat.satellite.host_collection:
