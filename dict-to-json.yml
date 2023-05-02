@@ -1,0 +1,15 @@
+---
+- name: nice_json filter on ansible-core is weird?
+  hosts: localhost
+  gather_facts: false
+  vars:
+    ahmed: ahmed
+    dict1:
+      test:
+        var1: one
+        var2: two
+  tasks:
+    - name: Write a json-string
+      ansible.builtin.copy:
+        content: "{{ dict1 | to_nice_json }}{{ '\n' }}"
+        dest: test.json
