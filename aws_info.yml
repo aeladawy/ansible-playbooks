@@ -1,0 +1,8 @@
+---
+- name: collect facts
+  gather_facts: false
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: Gather information about all instances
+      amazon.aws.ec2_instance_info:
