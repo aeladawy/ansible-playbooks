@@ -1,0 +1,8 @@
+---
+- name: test group vars
+  gather_facts: true
+  hosts: foreman_content_view_default_organization_view
+  tasks:
+    - name: print group vars
+      ansible.builtin.debug:
+        var: test_group_var
