@@ -5,4 +5,4 @@
   tasks:
     - name: print group vars
       ansible.builtin.debug:
-        msg: "the value of the set group var test_group_var is {{ test_group_var }}"
+        msg: "the value of the set group var test_group_var is {{ test_group_var }} "
