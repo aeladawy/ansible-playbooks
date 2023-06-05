@@ -5,3 +5,4 @@
   tasks:
     - name: update facts
       setup:
+      run_once: true
