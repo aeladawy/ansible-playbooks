@@ -6,3 +6,5 @@
     - name: update facts
       setup:
       run_once: true
+      ignore_unreachable: true
+
