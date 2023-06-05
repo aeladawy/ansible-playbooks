@@ -1,7 +1,7 @@
 ---
 - name: collect facts
   hosts: all
-  gather_facts: yes
+  gather_facts: false
   tasks:
     - name: update facts
       setup:
