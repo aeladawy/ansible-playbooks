@@ -1,0 +1,28 @@
+---
+- name: mount module demo
+  hosts: localhost
+  connection: local
+  vars:
+    uri: "//aeladawy-ha-nfs.example.com/Secure"
+    username: "sambauser"
+    password: "redhat"
+    mountpoint: "/share"
+  tasks:
+    - name: utility present
+      ansible.builtin.package:
+        name: cifs-utils
+        state: present
+    - name: check mountpoint exist
+      ansible.builtin.file:
+        path: "{{ mountpoint }}"
+        state: directory
+        mode: '0755'
+        owner: root
+        group: root
+    - name: Mount network share
+      ansible.posix.mount:
+        src: "{{ uri }}"
+        path: "{{ mountpoint }}"
+        fstype: cifs
+        opts: 'username={{ username }},password={{ password }}'
+        state: mounted
