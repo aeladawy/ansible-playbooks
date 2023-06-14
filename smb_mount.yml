@@ -3,7 +3,7 @@
   hosts: localhost
   connection: local
   vars:
-    uri: "//aeladawy-ha-nfs.example.com/Secure"
+    uri: "//192.168.122.236/share1"
     username: "sambauser"
     password: "redhat"
     mountpoint: "/share"
