@@ -2,6 +2,7 @@
 - name: mount module demo
   hosts: localhost
   connection: local
+  gather_facts: false
   vars:
     uri: "//192.168.122.236/share1"
     username: "sambauser"
