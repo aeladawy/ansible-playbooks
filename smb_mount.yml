@@ -8,13 +8,6 @@
     password: "redhat"
     mountpoint: "/share"
   tasks:
-    - name: check mountpoint exist
-      ansible.builtin.file:
-        path: "{{ mountpoint }}"
-        state: directory
-        mode: '0755'
-        owner: root
-        group: root
     - name: Mount network share
       ansible.posix.mount:
         src: "{{ uri }}"
