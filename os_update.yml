@@ -7,4 +7,6 @@
       yum:
         name: '*'
         state: latest
-        exclude: httpd*
+        security: no
+        exclude: "{{ exclude_rpm }}"
+        update_cache: yes
