@@ -1,7 +1,7 @@
 ---
-- name: collect facts
+- name: update packages playbook
   hosts: all
-  gather_facts: false
+  gather_facts: true
   tasks:
     - name: update packages
       yum:
@@ -10,3 +10,6 @@
         security: no
         exclude: "{{ exclude_rpm }}"
         update_cache: yes
+      when: >
+            ansible_distribution_major_version == '8'   
+    
