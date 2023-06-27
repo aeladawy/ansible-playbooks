@@ -4,7 +4,7 @@
   connection: local
   gather_facts: false
   tasks:
-    - name: copy file to smb share
+    - name: create empty file
       file:
         path: /share/touch_test2
         state: touch
