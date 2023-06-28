@@ -11,7 +11,13 @@
     - name: register the machine
       ansible.builtin.command: subscription-manager register --org=1979710 --activationkey=aeladawy-tower-ak --force
       when: ansible_distribution == "RedHat"    
-
+  
+    - name: Set authorized key
+      ansible.posix.authorized_key:
+        user: root
+        key: "{{ public_key }}"  
+        state: present
+        
     - name: Install packages
       ansible.builtin.yum:
         name:
