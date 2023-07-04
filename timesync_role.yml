@@ -5,4 +5,4 @@
   tasks:
     - name: include timesync roles
       include_role:
-        name: redhat.rhel_system_roles.timesync
+        name: support.test.timesync
