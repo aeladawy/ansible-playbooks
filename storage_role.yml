@@ -1,0 +1,12 @@
+---
+- hosts: all
+  vars:
+    storage_volumes:
+      - name: barefs
+        type: disk
+        disks:
+          - vdb
+        fs_type: xfs
+        mount_point: /mnt/new_desk
+  roles:
+    - rhel-system-roles.storage
