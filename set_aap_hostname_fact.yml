@@ -6,8 +6,7 @@
 #      set_fact:
 #        controller_host: "{{lookup('pipe','hostname')}}"
     - name: get AAP hostname 
-      command: 
-        cmd: hostname
+      shell: echo $HOSTNAME
       register: controller_host
       delegate_to: localhost
 
