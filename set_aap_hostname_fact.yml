@@ -1,0 +1,9 @@
+---
+- hosts: all
+  tasks:
+    - name: set AAP new_machine_hostname
+      set_fact:
+        controller_host: "{{lookup('pipe','hostname')}}"
+    - name: debug controller_host
+      debug:
+        var: controller_host
