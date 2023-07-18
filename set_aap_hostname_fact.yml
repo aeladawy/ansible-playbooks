@@ -1,16 +1,7 @@
----
-- hosts: all
+- name: Access Ansible controller hostname
+  hosts: localhost
   gather_facts: false
   tasks:
-#    - name: set AAP hostname facts
-#      set_fact:
-#        controller_host: "{{lookup('pipe','hostname')}}"
-    - name: get AAP hostname 
-      shell: echo $HOSTNAME
-      register: controller_host
-      delegate_to: localhost
-
-    - name: debug controller_host
+    - name: Print controller hostname
       debug:
-        var: controller_host
-      delegate_to: localhost
+        var: ansible_nodename
