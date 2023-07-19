@@ -1,0 +1,9 @@
+#aeladawy-tower.example.com
+#aeladawy-rhel8-tower-client.example.com
+
+plugin: azure.azcollection.azure_rm
+
+#include_vm_resource_groups: 
+#  - rg-xxx-xxxxxxxxxx-env-eastus-01
+
+auth_source: auto
