@@ -1,0 +1,6 @@
+plugin: azure.azcollection.azure_rm
+
+include_vm_resource_groups: 
+  - rg-xxx-xxxxxxxxxx-env-eastus-01
+
+auth_source: auto
