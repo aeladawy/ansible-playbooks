@@ -3,12 +3,13 @@
   hosts: all
   gather_facts: false
   tasks:
-    - name: change index.html content
-      lineinfile:
+    - name: Set serverName
+      community.general.ini_file:
+        mode: "0600"
         path: /var/www/html/index.html
-        line: "LogLevel debug"
-        state: present
-        backup: yes
+        section: general
+        option: serverName
+        value: "{{ inventory_hostname }}"
       become: yes
       changed_when: True
       notify: Restart httpd
