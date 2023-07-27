@@ -1,4 +1,4 @@
 ---
 collections:
-  - name: redhat.insights
+  - name: ansible.utils
   #- name: support.test
