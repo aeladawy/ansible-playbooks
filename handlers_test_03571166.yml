@@ -28,7 +28,7 @@
         validate_certs: false
       register: httpd_status
       until: httpd_status.status == 200
-      retries: 10
+      retries: 5
       delay: 5
       listen: Restart httpd
       check_mode: false
