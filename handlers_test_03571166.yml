@@ -24,7 +24,7 @@
 
     - name: "Wait for httpd to start"
       ansible.builtin.uri:
-        url: "https://aeladawy-rhel9-client.example.com"
+        url: "http://aeladawy-rhel9-client.example.com"
         validate_certs: false
       register: httpd_status
       until: httpd_status.status == 200
