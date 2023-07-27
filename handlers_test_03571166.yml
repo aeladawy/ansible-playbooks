@@ -5,7 +5,6 @@
   tasks:
     - name: Set serverName
       community.general.ini_file:
-        mode: "0600"
         path: /var/www/html/index.html
         section: general
         option: serverName
