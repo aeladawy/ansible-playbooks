@@ -5,6 +5,7 @@
   tasks:
     - name: Set serverName
       community.general.ini_file:
+        mode: "0600"
         path: /var/www/html/index.html
         section: general
         option: serverName
@@ -13,14 +14,22 @@
       changed_when: True
       notify: Restart httpd
   handlers:
-    - name: "Restart httpd daemon"
-      ansible.builtin.systemd:
-        name: "httpd.service"
+#    - name: "Restart httpd daemon"
+#      ansible.builtin.systemd:
+#        name: "httpd.service"
+#        state: restarted
+#        daemon-reload: true
+#        enabled: true
+#      listen: Restart httpd
+#      become_user: root
+    - name: "Restart httpd daemon using service module"
+      ansible.builtin.service:
+        name: httpd
         state: restarted
-        daemon-reload: true
-        enabled: true
-      listen: Restart httpd
-      become_user: root
+        sleep: 15
+     listen: Restart httpd
+     become_user: root 
+
 
     - name: "Wait for httpd to start"
       ansible.builtin.uri:
