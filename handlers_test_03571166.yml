@@ -27,8 +27,8 @@
         name: httpd
         state: restarted
         sleep: 15
-     listen: Restart httpd
-     become_user: root 
+      listen: Restart httpd
+      become_user: root 
 
 
     - name: "Wait for httpd to start"
