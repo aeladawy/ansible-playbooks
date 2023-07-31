@@ -12,6 +12,17 @@
       become: yes
       changed_when: True
       notify: Restart httpd
+      
+    - name: Set serverName not changed
+      community.general.ini_file:
+        path: /var/www/html/index.html
+        section: general
+        option: serverName
+        value: "{{ inventory_hostname }}"
+      become: yes
+      #changed_when: True
+      notify: Restart httpd
+      
   handlers:
 #    - name: "Restart httpd daemon"
 #      ansible.builtin.systemd:
