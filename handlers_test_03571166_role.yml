@@ -8,3 +8,7 @@
     - name: run the role 
       include_role:
         name: case03571166.handler_test.testhandlers
+
+    - name: run the role 
+      include_role:
+        name: case03571166.handler_test.testhandlers
