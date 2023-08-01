@@ -2,5 +2,9 @@
 - name: test handlers
   hosts: all
   gather_facts: false
-  roles:
-    - case03571166.handler_test.testhandlers
+  #roles:
+  #  - case03571166.handler_test.testhandlers
+  tasks:
+    - name: run the role 
+      include_role:
+        name: case03571166.handler_test.testhandlers
