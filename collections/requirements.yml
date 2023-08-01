@@ -2,4 +2,4 @@
 collections:
   - name: ansible.utils
   - name: community.general
-  #- name: support.test
+  - name: case03571166.handler_test
