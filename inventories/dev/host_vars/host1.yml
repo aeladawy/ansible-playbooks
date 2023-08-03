@@ -1,3 +1,2 @@
 ---
-host1_var1: true
-env: dev
+host1_var1: "value1"
