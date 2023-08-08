@@ -3,24 +3,22 @@
   hosts: all
   gather_facts: false
   tasks:
-    - name: Set serverName
-      community.general.ini_file:
-        path: /var/www/html/index.html
-        section: general
-        option: serverName
-        value: "{{ inventory_hostname }}"
-      become: yes
-      changed_when: True
+    - name: changed_when true
+      ansible.builtin.debug:
+        msg: "changed_when: true"
+      changed_when: true
       notify: Restart httpd
       
-    - name: Set serverName not changed
-      community.general.ini_file:
-        path: /var/www/html/index.html
-        section: general
-        option: serverName
-        value: "{{ inventory_hostname }}"
-      become: yes
-      #changed_when: True
+    - name: changed_when true number 2
+      ansible.builtin.debug:
+        msg: "changed_when: true"
+      changed_when: true
+      notify: Restart httpd
+      
+    - name: changed_when false
+      ansible.builtin.debug:
+        msg: "changed_when: false"
+      changed_when: false
       notify: Restart httpd
       
   handlers:
@@ -32,22 +30,3 @@
         enabled: true
       listen: Restart httpd
       become_user: root
-#    - name: "Restart httpd daemon using service module"
-#      ansible.builtin.service:
-#        name: httpd
-#        state: restarted
-#        sleep: 15
-#      listen: Restart httpd
-#      become_user: root 
-
-
-    - name: "Wait for httpd to start"
-      ansible.builtin.uri:
-        url: "http://aeladawy-rhel9-client.example.com"
-        validate_certs: false
-      register: httpd_status
-      until: httpd_status.status == 200
-      retries: 5
-      delay: 5
-      listen: Restart httpd
-      check_mode: false
