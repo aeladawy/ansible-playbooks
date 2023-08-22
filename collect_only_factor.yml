@@ -3,7 +3,7 @@
   hosts: all
   gather_facts: false
   tasks:
-    - name: update facts
+    - name: Collect only facts returned by facter
       setup:
         gather_subset:
           - min
