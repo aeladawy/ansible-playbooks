@@ -1,10 +1,103 @@
 ---
-- name: collect facts
-  hosts: all
-  gather_facts: false
-  tasks:
-    - name: Collect only facts returned by facter
-      setup:
-        gather_subset:
-          - min
-          - facter
+  - name: 'Gathering custom facts for UNIX'
+    hosts: all
+    gather_facts: false
+    vars:
+     mytext: |
+      #!/bin/sh
+      #################################
+      # Created by: Wood ansible team #
+      #################################
+      # Cleaning previous fact file
+      rm -f /etc/ansible/facts.d/sss.fact
+      # Ensuring that temp file do not exists
+      rm -f /etc/ansible/facts.d/sss.temp
+      #filering out rows that contains subsystem=no and on results listing only 3 chars after subsystem type
+      #grep -v 'SUBSYSTEM_INSTANCE=NO' /var/opt/ansible/GTS/scanner/SDMS/Unix/subs_scanner_result.sss  | grep -o -P 'SUBSYSTEM_TYPE=.{0,3}'  | sort --unique > /etc/ansible/facts.d/sss.temp
+      grep -v 'SUBSYSTEM_INSTANCE=NO' /var/opt/ansible/GTS/scanner/SDMS/Unix/subs_scanner_result.sss |
+      awk -F ";" '{print $6}'| sort |uniq  > /etc/ansible/facts.d/sss.temp      # Replacing '=' character with '_' character
+      #grep -rl '=' /etc/ansible/facts.d/sss.temp| xargs sed -i 's/=/_/g'
+      grep -rl '=' /etc/ansible/facts.d/sss.temp| xargs sed  's/=/_/g' | sed  '/^$/d'>/etc/ansible/facts.d/sss.temp2
+      # Creating main output file with header
+      echo '[general]' > /etc/ansible/facts.d/sss.fact
+      #add unix type for easier parsing in tower
+      echo 'SYSTEM_TYPE_unix=yes' >> /etc/ansible/facts.d/sss.fact
+      #add section to parse OS version
+      flavor=`uname`
+      if [[ "$flavor" = "Linux" ]]; then
+      lsbdetect=`which lsb_release`;
+      if [[ "lsbdetect" != "/usr/bin/lsb_release" ]] ; then
+      OS=`cat /etc/*release| egrep  "Red|CentOS|Ubuntu|SLES|Debian|Fedora" | sort |uniq | awk '{print $1}'|head -1`
+      version=`cat /etc/*release| egrep  "Red|CentOS|Ubuntu|SLES|Debian|Fedora" | sort |uniq |grep -Eo '[0-9]{1,4}'|head -1`;
+      else
+      OS=`lsb_release -a | grep Descr | awk '{print $2}'`
+      version=`lsb_release -a | grep "Release" | awk '{print $NF}' | awk -F "." '{print $1}'`;
+      fi
+      #OS=`lsb_release -a | grep Description | awk '{print $2}'`;
+      #OS=`lsb_release -a| grep -i "Distributor ID"
+      if [[ "$OS" == *"Red"* ]]; then OS=RHEL;
+      elif [[ "$OS" == *"Cent"* ]]; then OS=CentOS;
+      elif [[ "$OS" == *"Ubuntu"* ]]; then OS=Ubuntu;
+      elif [[ "$OS" == *"SLES"* ]] || [[ "$OS" == *"SUSE"* ]]; then OS=SLES;
+      elif [[ "$OS" == *"Debian"* ]]; then OS=Debian;
+      elif [[ "$OS" == *"Fedora"* ]]; then OS=Fedora;
+      else OS=$OS
+      fi;
+      #version=`lsb_release -a | grep "Release" | awk '{print $NF}' | awk -F "." '{print $1}'`;
+      echo "SYSTEM_TYPE_unix_os=$OS$version" >> /etc/ansible/facts.d/sss.fact
+      echo "SYSTEM_TYPE_os=$flavor" >> /etc/ansible/facts.d/sss.fact
+      elif [[ "$flavor" = "AIX" ]]; then
+      version=`oslevel | awk -F "." '{print $1}'`;
+      echo "SYSTEM_TYPE_unix_os=$flavor$version" >> /etc/ansible/facts.d/sss.fact
+      echo "SYSTEM_TYPE_os=$flavor" >> /etc/ansible/facts.d/sss.fact
+      fi
+      #check for GCM prepared Endpoints
+      jrefiles=`find /var/opt/ansible/GTS -type d -name "jre" -exec basename {} \;`
+      if [[ "$jrefiles" = "jre" ]] ; then
+      echo  "jre_Exists:yes" >> /etc/ansible/facts.d/sss.fact
+      else
+      echo  "jre_Exists:no" >> /etc/ansible/facts.d/sss.fact
+      fi
+      HCLauncher=`find /var/opt/ansible/GTS -type d -name "HCLauncher" -exec basename {} \;`
+      if [[ "$HCLauncher" = "HCLauncher" ]] ; then
+      echo  "HCLaunch_Exists:yes" >> /etc/ansible/facts.d/sss.fact
+      else
+      echo  "HCLaunch_Exists:no" >> /etc/ansible/facts.d/sss.fact
+      fi
+      # Adding 'yes' string
+      cat /etc/ansible/facts.d/sss.temp2 | sed 's/.*/&=yes/' >> /etc/ansible/facts.d/sss.fact
+      # Cleaning
+      rm -f /etc/ansible/facts.d/sss.temp*
+      rm -f /var/opt/ansible/GTS/scanner/SDMS/Unix/smartinv.sh
+    #ignore_errors: yes
+    become: true
+    become_user: root
+    tasks:
+     - name: 'Check for subs_scanner_result.sss file'
+       stat:
+         path: /var/opt/ansible/GTS/scanner/SDMS/Unix/subs_scanner_result.sss
+       register: sss_file_attr
+     - name: 'Fail, if subs_scanner_result.sss file not found'
+       fail:
+         msg: "Cannot continue sss file doesn't exist"
+       when: not sss_file_attr.stat.exists
+     - name: 'Create Directory'
+       file:
+         path: /etc/ansible/facts.d
+         state: directory
+     - name: 'Create File with Content'
+       copy:
+         dest: "/var/opt/ansible/GTS/scanner/SDMS/Unix/smartinv.sh"
+         mode: 0775
+         content: "{{ mytext }}"
+     - name: Execute the command in remote shell
+       command: /var/opt/ansible/GTS/scanner/SDMS/Unix/smartinv.sh
+       become: true
+       become_user: root
+       changed_when: false
+     - name: Collect only facts returned by facter
+       setup:
+           gather_subset:
+             #- '!all'
+             - 'min'
+             - facter
