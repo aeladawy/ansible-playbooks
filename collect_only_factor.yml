@@ -101,3 +101,8 @@
              #- '!all'
              - 'min'
              - facter
+      register: min_facter_facts
+
+    - name: debug facts
+      debug:
+        msg: "{{ min_facter_facts }}"
