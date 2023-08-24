@@ -101,7 +101,7 @@
              #- '!all'
              - 'min'
              - facter
-      register: min_facter_facts
+       register: min_facter_facts
 
     - name: debug facts
       debug:
