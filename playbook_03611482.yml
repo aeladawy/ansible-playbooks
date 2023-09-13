@@ -1,0 +1,8 @@
+- hosts:
+    - localhost
+  tasks:
+    - name: Create object store account 
+      purestorage.flashblade.purefb_s3acc:
+        name: demo2
+        fb_url: 172.31.159.66
+        api_token: token
