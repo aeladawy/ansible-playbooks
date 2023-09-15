@@ -11,6 +11,7 @@
         server_url: "https://{{ satellite }}"
         organization: "dorganization"
         search: "label=rhel-8-for-x86_64-appstream-rpms"
+        validate_certs: false
       register: output
 
     - name: debug
