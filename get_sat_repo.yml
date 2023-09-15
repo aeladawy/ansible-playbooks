@@ -8,7 +8,7 @@
       redhat.satellite.repository_set_info:
         username: "{{ satellite_username }}"
         password: "{{ satellite_password }}"
-        server_url: "{{ satellite }}"
+        server_url: "https://{{ satellite }}"
         organization: "dorganization"
         search: "label=rhel-8-for-x86_64-appstream-rpms"
       register: output
