@@ -1,6 +1,6 @@
 ---
 - name: copy file to smb share playbook
-  hosts: 192.168.100.45
+  hosts: aeladawy-rhel8-tower-client.example.com
   #connection: local
   gather_facts: false
   tasks:
