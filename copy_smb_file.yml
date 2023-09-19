@@ -7,8 +7,9 @@
     - name: copy file to smb share
       ansible.builtin.copy:
         mode: '0644'
-        remote_src: /tmp/file_to_copy.txt
+        src: /tmp/file_to_copy.txt
         dest: /sharewin
+        remote_src: yes
 #    - name: create empty file
 #      file:
 #        path: /share/touch_test2
