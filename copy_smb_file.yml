@@ -1,14 +1,15 @@
 ---
 - name: copy file to smb share playbook
-  hosts: 192.168.100.79
+  hosts: 192.168.100.45
   #connection: local
   gather_facts: false
   tasks:
-    - name: create empty file
-      file:
-        path: /share/touch_test2
-        state: touch
-#      ansible.builtin.copy:
-#        mode: '0644'
-#        src: /tmp/share1/inventory
-#        dest: /mnt/share1/
+    - name: copy file to smb share
+      ansible.builtin.copy:
+        mode: '0644'
+        src: /tmp/file_to_copy.txt
+        dest: /sharewin
+#    - name: create empty file
+#      file:
+#        path: /share/touch_test2
+#        state: touch
