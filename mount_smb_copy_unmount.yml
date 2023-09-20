@@ -49,11 +49,10 @@
         src: "{{ item }}"
         dest: "{{ mountpoint }}"
         remote_src: yes
-        secontext: system_u:object_r:cifs_t:s0
-        #seuser: system_u
-        #serole: object_r
-        #setype: cifs_t
-        #selevel: s0
+        seuser: system_u
+        serole: object_r
+        setype: cifs_t
+        selevel: s0
         
         
       loop: "{{ result.files|map(attribute='path')|list }}"   
