@@ -41,7 +41,8 @@
       #delegate_to: localhost
     
     - debug:
-        msg: "{{ result.files|map(attribute='path')|list }}" 
+        #msg: "{{ result.files|map(attribute='path')|list }}" 
+        msg: "{{ result }}" 
 
     - name: Copy file to send
       ansible.builtin.copy:
