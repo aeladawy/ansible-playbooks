@@ -1,0 +1,60 @@
+---
+- name: Mount Unicloud share
+  hosts: all
+  #become: true
+  
+  vars:
+    uri: "//192.168.100.23/SharedFiles"
+    mountpoint: "/sharewin"
+    
+  tasks:
+        
+    - name: Check CIFS utils
+      ansible.builtin.package:
+        name: cifs-utils
+        state: present
+        
+    - name: Check mountpoint
+      ansible.builtin.file:
+        path: "{{ mountpoint }}"
+        state: directory
+        mode: '0755'
+        owner: root
+        group: root
+        
+    - name: Mount windows network share
+      ansible.posix.mount:
+        src: "{{ uri }}"
+        path: "{{ mountpoint }}"
+        fstype: cifs
+        opts: 'username=sambauser,password=redhat'
+        state: mounted
+
+    - name: Find xlsx files 
+      ansible.builtin.find:
+        paths: /home/toexcel
+        file_type: file
+        use_regex: false
+        patterns: 
+          - '*.xlsx'
+      register: result
+      #delegate_to: localhost
+    
+    - debug:
+        msg: "{{ result.files|map(attribute='path')|list }}" 
+
+    - name: Copy file to send
+      ansible.builtin.copy:
+        mode: '0644'
+        src: "{{ item }}"
+        dest: "{{ mountpoint }}"
+        remote_src: yes          
+      loop: "{{ result.files|map(attribute='path')|list }}"   
+       
+    - name: Unmount windows network share
+      ansible.posix.mount:
+        src: "{{ uri }}"
+        path: "{{ mountpoint }}"
+        fstype: cifs
+        opts: 'username=sambauser,password=redhat'
+        state: unmounted
