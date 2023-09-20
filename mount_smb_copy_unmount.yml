@@ -41,8 +41,7 @@
       #delegate_to: localhost
     
     - debug:
-        #msg: "{{ result.files|map(attribute='path')|list }}" 
-        msg: "{{ result.files|map(attribute='path') | split('/') | last }}" 
+        msg: "{{ result.files|map(attribute='path')|list }}" 
 
     - name: Copy file to send
       ansible.builtin.copy:
@@ -50,12 +49,7 @@
         src: "{{ item }}"
         dest: "{{ mountpoint }}"
         remote_src: yes
-        seuser: system_u
-        serole: object_r
-        setype: cifs_t
-        selevel: s0
-        
-        
+      ignore_errors: true
       loop: "{{ result.files|map(attribute='path')|list }}"   
        
     - name: Unmount windows network share
