@@ -42,7 +42,7 @@
     
     - debug:
         #msg: "{{ result.files|map(attribute='path')|list }}" 
-        msg: "{{ result }}" 
+        msg: "{{ result.files|map(attribute='path')|split('/')|last|list }}" 
 
     - name: Copy file to send
       ansible.builtin.copy:
