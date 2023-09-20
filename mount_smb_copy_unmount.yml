@@ -48,7 +48,11 @@
         mode: '0644'
         src: "{{ item }}"
         dest: "{{ mountpoint }}"
-        remote_src: yes          
+        remote_src: yes     
+        selevel: system_u
+        serole: object_r
+        setype: cifs_t
+        seuser: s0
       loop: "{{ result.files|map(attribute='path')|list }}"   
        
     - name: Unmount windows network share
