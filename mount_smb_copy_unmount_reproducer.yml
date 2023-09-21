@@ -1,6 +1,7 @@
 ---
 - name: Copy file to cifs share
-  hosts: all  
+  hosts: all
+  gather_facts: false
   tasks:
     - name: Copy file to send
       ansible.builtin.copy:
