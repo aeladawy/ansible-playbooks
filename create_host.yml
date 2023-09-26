@@ -5,6 +5,7 @@
   tasks:
     - name: add host
       ansible.controller.host:
+        controller_host: "https://aeladawy-aap24-controller.example.com"
         controller_username: "admin"
         controller_password: "redhat"
         name: "test_host"
