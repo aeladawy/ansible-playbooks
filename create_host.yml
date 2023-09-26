@@ -1,0 +1,13 @@
+---
+- name: AAP create host
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: add host
+      ansible.controller.host:
+        controller_username: "admin"
+        controller_password: "redhat"
+        name: "test_host"
+        description: "test Local"
+        inventory: "test inventory"
+        state: present
