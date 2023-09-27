@@ -1,7 +1,7 @@
 ---
 - name: Include initialize_vars/subrole variables
   import_role:
-    name: initialize_vars/subrole
+    name: initialize_vars
   tags:
     - always
 
