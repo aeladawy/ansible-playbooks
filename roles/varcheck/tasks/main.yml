@@ -1,0 +1,10 @@
+---
+- name: Include initialize_vars/subrole variables
+  import_role:
+    name: initialize_vars/subrole
+  tags:
+    - always
+
+- name: Print playbook_host_group_name value
+  ansible.builtin.debug:
+    msg:  "Host group is {{ playbook_host_group_name }}"
