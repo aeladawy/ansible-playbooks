@@ -1,0 +1,7 @@
+---
+- hosts: "{{ playbook_host_group_name }}"
+  gather_facts: true
+  any_errors_fatal: true       
+          
+  roles:
+   -  { role: varcheck, tags: always }
