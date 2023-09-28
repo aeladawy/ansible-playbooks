@@ -1,7 +1,6 @@
 ---
 - name: send email
-  hosts: localhost
-  connection: local
+  hosts: all
   gather_facts: false
   tasks:
     - name: Sending an e-mail using the remote machine, not the Ansible controller node
@@ -11,4 +10,3 @@
         to: Ahmed Eladawy<ahmedfouadeladwy@gmail.com>
         subject: Ansible-report
         body: System  has been successfully provisioned.
-      delegate_to: localhost
