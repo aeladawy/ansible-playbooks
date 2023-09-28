@@ -2,6 +2,7 @@
 - name: send email
   hosts: localhost
   connection: local
+  gather_facts: false
   tasks:
     - name: Sending an e-mail using the remote machine, not the Ansible controller node
       mail:
