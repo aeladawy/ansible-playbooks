@@ -1,1 +1,12 @@
-
+---
+- name: send email
+  hosts: all
+  tasks:
+    - name: Sending an e-mail using the remote machine, not the Ansible controller node
+      mail:
+        host: 127.0.0.1
+        port: 25
+        to: Ahmed Eladawy<ahmedfouadeladwy@gmail.com>
+        subject: Ansible-report
+        body: System  has been successfully provisioned.
+      delegate_to: localhost
