@@ -1,8 +1,8 @@
 ---
-- hosts: "{{ playbook_host_group_name }}"
+#- hosts: "{{ playbook_host_group_name }}"
+- hosts: all
   gather_facts: true
   any_errors_fatal: true       
           
   roles:
-    #-  { role: varcheck, tags: always }
-    - role: initialize_vars 
+    -  { role: varcheck, tags: always }
