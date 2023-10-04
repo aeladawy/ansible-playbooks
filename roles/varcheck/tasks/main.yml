@@ -1,9 +1,7 @@
 ---
-- name: Include initialize_vars/subrole variables
+- name: Include initialize_vars variables
   include_role:
     name: initialize_vars
-  tags:
-    - always
 
 - name: Print playbook_host_group_name value
   ansible.builtin.debug:
