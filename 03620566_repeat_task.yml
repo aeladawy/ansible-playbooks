@@ -1,6 +1,6 @@
 ---
 - name: Retry until a file is available
-  hosts: localhost
+  hosts: all
   tasks:
     - name: Validate if the file is present
       file:
