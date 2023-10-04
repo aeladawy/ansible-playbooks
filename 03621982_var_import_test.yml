@@ -1,6 +1,6 @@
 ---
-#- hosts: "{{ playbook_host_group_name }}"
-- hosts: all
+- hosts: "{{ playbook_host_group_name }}"
+# hosts: all
   gather_facts: true
   any_errors_fatal: true       
           
