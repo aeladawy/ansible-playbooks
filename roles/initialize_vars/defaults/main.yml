@@ -1,2 +1,2 @@
 ---
-playbook_host_group_name: "default_group"
+playbook_host_group_name: "group1"

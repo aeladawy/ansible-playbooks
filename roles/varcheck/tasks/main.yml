@@ -1,6 +1,6 @@
 ---
 - name: Include initialize_vars variables
-  include_role:
+  import_role:
     name: initialize_vars
 
 - name: Print playbook_host_group_name value
