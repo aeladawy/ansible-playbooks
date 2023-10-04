@@ -1,0 +1,12 @@
+---
+- name: Retry until a file is available
+  hosts: localhost
+  tasks:
+    - name: Validate if the file is present
+      file:
+        path: /tmp/myprocess.pid
+        state: file
+      register: lsresult
+      until: "lsresult is not failed"
+      retries: 10000
+      delay: 2
