@@ -1,6 +1,6 @@
 ---
 - name: image pull
-  hosts: aeladawy-aap23-controller.example.com
+  hosts: awx_execution_node
 
   tasks:
     - name: Login to default registry and create ${XDG_RUNTIME_DIR}/containers/auth.json
@@ -10,9 +10,9 @@
         registry: 'aeladawy-aap23-pah.example.com'
         tlsverify: false
 
-#    - name: Image pull using command
-#      command: "podman pull aeladawy-aap23-pah.example.com/ansible-automation-platform-22/ee-29-rhel8 --tls-verify=false"
-    - name: pull the containers
-      containers.podman.podman_image:
-        name: aeladawy-aap23-pah.example.com/ansible-automation-platform-22/ee-29-rhel8
-        validate_certs: false
+    - name: Image pull using command
+      command: "podman pull aeladawy-aap23-pah.example.com/ansible-automation-platform-22/ee-29-rhel8 --tls-verify=false"
+#    - name: pull the containers
+#      containers.podman.podman_image:
+#        name: aeladawy-aap23-pah.example.com/ansible-automation-platform-22/ee-29-rhel8
+#        validate_certs: false
