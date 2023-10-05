@@ -15,3 +15,4 @@
     - name: pull the containers
       containers.podman.podman_image:
         name: aeladawy-aap23-pah.example.com/ansible-automation-platform-22/ee-29-rhel8
+        validate_certs: false
