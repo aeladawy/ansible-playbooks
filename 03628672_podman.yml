@@ -7,8 +7,8 @@
       containers.podman.podman_login:
         username: 'admin'
         password: 'redhat'
-        registry: 'aeladawy-aap24-pah.example.com'
+        registry: 'aeladawy-aap23-pah.example.com'
         tlsverify: false
 
     - name: Image pull using command
-      command: "podman pull aeladawy-aap24-pah.example.com/de-minimal-rhel8 --tls-verify=false"
+      command: "podman pull aeladawy-aap23-pah.example.com/ansible-automation-platform-22/ee-29-rhel8 --tls-verify=false"
