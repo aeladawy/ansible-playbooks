@@ -1,0 +1,9 @@
+- name: fetch files
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: fetch file to the controller
+      fetch:
+        flat: yes
+        src: "/tmp/test1"
+        dest: "/tmp/unix_inv/"
