@@ -5,5 +5,5 @@
     - name: fetch file to the controller
       fetch:
         flat: yes
-        src: "/tmp/test1"
+        src: "/tmp/test1.csv"
         dest: "/tmp/unix_inv/"
