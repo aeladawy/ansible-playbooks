@@ -9,7 +9,7 @@
       register: file2fetch
     - name: fetch files to controller
       fetch:
-        #flat: yes
+        flat: yes
         src: "{{ item.path }}"
         dest: "/tmp/unix_inv/"
       with_items: "{{ file2fetch.files }}"
