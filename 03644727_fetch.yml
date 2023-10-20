@@ -2,8 +2,14 @@
   hosts: all
   gather_facts: false
   tasks:
-    - name: fetch file to the controller
+    - name: get list of the result files
+      find:
+        path: /tmp/unix_inv
+        patterns: '*_unix_inv.csv'
+      register: file2fetch
+    - name: fetch files to controller
       fetch:
         flat: yes
-        src: "/tmp/test1.csv"
+        src: "{{ item.path }}"
         dest: "/tmp/unix_inv/"
+      with_items: "{{ file2fetch.files }}"
