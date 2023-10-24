@@ -1,7 +1,8 @@
 ---
 - name: image pull
-  hosts: aeladawy-aap23-controller.example.com
-
+#  hosts: aeladawy-aap23-controller.example.com
+  hosts: localhost
+  connection: local
   tasks:
     - name: Login to default registry and create ${XDG_RUNTIME_DIR}/containers/auth.json
       containers.podman.podman_login:
