@@ -4,13 +4,13 @@
   hosts: localhost
   connection: local
   tasks:
-    - name: Edit /etc/subuid and /etc/subgid
-      ansible.builtin.lineinfile:
-        path: "{{ item }}"
-        line: root:100000:65536
-      loop:
-        - /etc/subuid
-        - /etc/subgid
+#    - name: Edit /etc/subuid and /etc/subgid
+#      ansible.builtin.lineinfile:
+#        path: "{{ item }}"
+#        line: root:100000:65536
+#      loop:
+#        - /etc/subuid
+#        - /etc/subgid
 
  #   - name: Ignore storage chown_errors
  #     ansible.builtin.lineinfile:
