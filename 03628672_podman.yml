@@ -44,6 +44,10 @@
  
     - name: Image pull using command
       command: "podman pull aeladawy-aap23-pah.example.com/ansible-automation-platform-22/ee-29-rhel8 --tls-verify=false"
+
+    - name: Check current images
+      command: "podman images"
+      
 #    - name: pull the containers
 #      containers.podman.podman_image:
 #        name: aeladawy-aap23-pah.example.com/ansible-automation-platform-22/ee-29-rhel8
