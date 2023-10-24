@@ -17,7 +17,10 @@
         path: /etc/containers/storage.conf
         regexp: '#ignore_chown_errors = "false"'
         line: ignore_chown_errors = "true"
-        
+
+    - command: cat /etc/subuid /etc/subgid
+    - command: grep ignore_chown_errors /etc/containers/storage.conf
+    
     - name: Login to default registry and create ${XDG_RUNTIME_DIR}/containers/auth.json
       containers.podman.podman_login:
         username: 'admin'
