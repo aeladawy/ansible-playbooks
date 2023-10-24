@@ -4,6 +4,20 @@
   hosts: localhost
   connection: local
   tasks:
+    - name: Edit /etc/subuid and /etc/subgid
+      ansible.builtin.lineinfile:
+        path: "{{ item }}"
+        line: root:100000:65536
+      loop:
+        - /etc/subuid
+        - /etc/subgid
+
+    - name: Ignore storage chown_errors
+      ansible.builtin.lineinfile:
+        path: /etc/containers/storage.conf
+        regexp: '#ignore_chown_errors = "false"'
+        line: ignore_chown_errors = "true"
+        
     - name: Login to default registry and create ${XDG_RUNTIME_DIR}/containers/auth.json
       containers.podman.podman_login:
         username: 'admin'
