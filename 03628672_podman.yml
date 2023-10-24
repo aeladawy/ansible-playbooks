@@ -36,6 +36,12 @@
         - /etc/subuid
         - /etc/subgid
 
+    - name: Ignore storage chown_errors
+      ansible.builtin.lineinfile:
+        path: /etc/containers/storage.conf
+        regexp: '#ignore_chown_errors = "false"'
+        line: ignore_chown_errors = "true"
+ 
     - name: Image pull using command
       command: "podman pull aeladawy-aap23-pah.example.com/ansible-automation-platform-22/ee-29-rhel8 --tls-verify=false"
 #    - name: pull the containers
