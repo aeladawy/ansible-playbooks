@@ -2,6 +2,9 @@
 - name: collect facts
   hosts: all
   gather_facts: false
+  vars:
+    "ansible_ssh_pipelining": true
+    "ansible_ssh_common_args": "-o UserKnownHostsFile=/dev/null"
   tasks:
     - name: update facts
       setup:
