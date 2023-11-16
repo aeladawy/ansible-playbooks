@@ -1,0 +1,9 @@
+---
+- name: test template
+  hosts: aeladawy-rhel8-tower-client.example.com
+  tasks:
+    - name: Replace kickstart template values
+      ansible.builtin.template:
+        src: "/repo/kickstart/ks9-hyperv.cfg.j2"
+        dest: "/repo/kickstart/text.conf"
+      delegate_to: localhost
