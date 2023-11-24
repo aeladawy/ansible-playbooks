@@ -1,7 +1,7 @@
 ---
 - name: collect facts
   hosts: all
-  serial: "{{ serial_val }}"
+  serial: "2"
   gather_facts: false
   tasks:
     - name: update facts
