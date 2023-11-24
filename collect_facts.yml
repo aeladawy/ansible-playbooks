@@ -1,6 +1,7 @@
 ---
 - name: collect facts
   hosts: all
+  serial: 1
   gather_facts: false
   tasks:
     - name: update facts
