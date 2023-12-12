@@ -1,0 +1,9 @@
+---
+- name: test systemd mask
+  hosts: aeladawy-rhel9-client.example.com
+  tasks:
+    - name: Mask ctrl-alt-delete
+      ansible.builtin.systemd:
+        name: ctrl-alt-del.target
+        masked: true
+        daemon_reload: true
