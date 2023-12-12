@@ -7,6 +7,7 @@
         name: ctrl-alt-del.target
         enabled: false
         masked: true
+        force: true
 #        daemon_reload: true
 
 #    - name: Mask ctrl-alt-delete
