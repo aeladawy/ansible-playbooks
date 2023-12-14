@@ -1,6 +1,7 @@
 ---
 - name: test cifs mounts
   hosts: localhost
+  connection: local
   gather_facts: no
   become: yes
   vars:
@@ -9,9 +10,7 @@
   tasks:
 
     - name: Check CIFS utils
-      ansible.builtin.package:
-        name: cifs-utils
-        state: present
+      ansible.builtin.command: microdnf install samba-client cifs-utils 
 
     - name: create mount directory
       ansible.builtin.file:
