@@ -16,6 +16,7 @@
       ansible.builtin.file:
         path: /mnt/test
         state: directory
+        mode: '777'
 
     - name: mount cifs share
       ansible.posix.mount:
