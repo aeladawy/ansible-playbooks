@@ -9,8 +9,8 @@
     
   tasks:
 
-    - name: Check CIFS utils
-      ansible.builtin.command: microdnf install samba-client cifs-utils 
+#    - name: Check CIFS utils
+#      ansible.builtin.command: microdnf install samba-client cifs-utils 
 
     - name: create mount directory
       ansible.builtin.file:
