@@ -3,10 +3,10 @@
   hosts: localhost
   connection: local
   gather_facts: no
-  become: yes
   vars:
     cifs_user: "sambauser"
     cifs_pass: "redhat"
+    
   tasks:
 
     - name: Check CIFS utils
