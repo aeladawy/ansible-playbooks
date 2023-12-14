@@ -8,10 +8,10 @@
     cifs_pass: "redhat"
   tasks:
 
-  #  - name: Check CIFS utils
-  #    ansible.builtin.package:
-  #      name: cifs-utils
-  #      state: present
+    - name: Check CIFS utils
+      ansible.builtin.package:
+        name: cifs-utils
+        state: present
 
     - name: create mount directory
       ansible.builtin.file:
