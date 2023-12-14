@@ -22,6 +22,6 @@
       ansible.posix.mount:
         src: //192.168.100.23/Secure
         path: /mnt/test
-        opts: "rw,username={{ cifs_user }},password={{ cifs_pass }}"
+        opts: "rw,username=sambauser,password=redhat,context=system_u:object_r:container_file_t:s0"
         fstype: cifs
         state: mounted
