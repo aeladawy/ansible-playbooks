@@ -7,8 +7,8 @@
       redhat.satellite.repository_set:
         username: "admin"
         password: "redhat"
-        server_url: "https://sbransible-satellite6.example.com/"
-        organization: "dorganization"
+        server_url: "https://10.37.195.33/"
+        organization: "redhat"
         label: rhel-8-for-x86_64-appstream-rpms
         validate_certs: false
         repositories:
