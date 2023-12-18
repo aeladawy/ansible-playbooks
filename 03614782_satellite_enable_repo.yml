@@ -1,0 +1,16 @@
+---
+- name: test template
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: "Enable RHEL 8 appstream RPMs repository with label"
+      redhat.satellite.repository_set:
+        username: "admin"
+        password: "redhat"
+        server_url: "https://sbransible-satellite6.example.com/"
+        organization: "dorganization"
+        label: rhel-8-for-x86_64-appstream-rpms
+        validate_certs: false
+        repositories:
+          - releasever: "8"
+        state: enabled
