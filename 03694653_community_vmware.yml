@@ -1,0 +1,18 @@
+---
+- name: Add Tag to VMware VM
+  hosts: all
+  gather_facts: true
+  tasks:
+    - name: Adding the vmware Dev Tag
+      community.vmware.vmware_tag_manager:
+        hostname: "https://mna-emea-lab-vcsa.gsslab.brq2.redhat.com/"
+        username: "aeladawy"
+        password: "redhat"
+        validate_certs: no
+        tag_names:
+          - tag: Linux_DEV
+            category: Linux
+        object_name: "{{ ansible_hostname }}"
+        object_type: VirtualMachine
+        state: add
+      delegate_to: localhost
