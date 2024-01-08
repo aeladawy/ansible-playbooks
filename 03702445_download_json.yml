@@ -1,0 +1,12 @@
+---
+- name: collect facts
+  gather_facts: false
+  hosts: aeladawy-rhel8-tower-client.example.com
+  tasks:
+    - name: Download json file
+      ansible.builtin.get_url:
+        url: https://dev.azure.com/aeladawy/_git/aeladawy-project?path=/61201.json
+        dest: /tmp/61201.json
+        force_basic_auth: true
+        url_username: aeladawy@redhat.com
+        url_password: "vuv4jpvkjz2qliprslofpvoptzpcichycjiti2276cbzxnbv3gta"
