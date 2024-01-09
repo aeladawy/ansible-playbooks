@@ -1,0 +1,5 @@
+---
+- name: Download Ansible Automation Platform Installer
+  hosts: all
+    roles:
+      - { role: infra.aap_utilities.aap_setup_download }
