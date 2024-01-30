@@ -6,7 +6,7 @@
     - name: Download json file from azure repo
       ansible.builtin.get_url:
         url: "{{ json_file_url }}"
-        dest: /repo/customer.json
+        dest: "{{ destination_location }}"
         force_basic_auth: true
         url_username: "{{ repo_username }}"
         url_password: "{{ azure_token }}"
