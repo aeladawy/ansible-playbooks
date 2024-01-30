@@ -1,0 +1,13 @@
+---
+- name: Azure repo download files
+  gather_facts: false
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: Download json file from azure repo
+      ansible.builtin.get_url:
+        url: "{{ json_file_url }}"
+        dest: /tmp/customer.json
+        force_basic_auth: true
+        url_username: "{{ repo_username }}"
+        url_password: "{{ azure_token }}"
