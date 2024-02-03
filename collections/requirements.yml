@@ -1,6 +1,0 @@
----
-collections:
-  - name: ansible.utils
-  - name: infra.aap_utilities
-#  - name: community.general
-  #- name: case03571166.handler_test
