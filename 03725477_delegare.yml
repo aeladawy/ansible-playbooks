@@ -1,0 +1,7 @@
+- name: delegate_to.yml
+  hosts: all
+  tasks:
+  - name: 'Execution node: "{{ awx_execution_node }}"; Managed Node: "{{ ansible_hostname }}"'
+    uri:
+      url: "https://www.google.com/"
+    delegate_to: localhost
