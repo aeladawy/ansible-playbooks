@@ -1,0 +1,5 @@
+---
+collections:
+- name: vmware.vmware_rest
+  version: "3.0.0"
+  source: "https://galaxy.ansible.com/"
