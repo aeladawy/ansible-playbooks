@@ -6,8 +6,8 @@
   tasks:
     - name: Extract the given installer tarball
       ansible.builtin.unarchive:
-        src: "{{ aap_setup_prep_installer_file }}"
-        dest: "{{ aap_setup_prep_working_dir }}"
+        src: "{{ aap_setup_down_installer_file }}"
+        dest: "{{ aap_setup_down_dest_dir }}"
         list_files: true
         remote_src: true
         exclude: "inventory"
