@@ -3,3 +3,11 @@
   hosts: all
   roles:
     - { role: infra.aap_utilities.aap_setup_download }
+  tasks:
+    - name: Extract the given installer tarball
+      ansible.builtin.unarchive:
+        src: "{{ aap_setup_prep_installer_file }}"
+        dest: "{{ aap_setup_prep_working_dir }}"
+        list_files: true
+        remote_src: true
+        exclude: "inventory"
