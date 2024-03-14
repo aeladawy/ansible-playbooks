@@ -1,6 +1,6 @@
 # The most minimal example, targeting only a single HMC
 plugin: ibm.power_hmc.powervm_inventory
 hmc_hosts:
-  - hmc: test.example.com
-    user: admin
-    password: admin
+  - hmc: '{{ hmc_host }}'
+    user: '{{ username }}'
+    password: '{{ password }}'
