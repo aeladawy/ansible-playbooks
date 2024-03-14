@@ -1,5 +1,6 @@
 # The most minimal example, targeting only a single HMC
 plugin: ibm.power_hmc.powervm_inventory
+use_extra_vars: true
 hmc_hosts:
   - hmc: "{{ hmc }}"
     user: "{{ user }}"
