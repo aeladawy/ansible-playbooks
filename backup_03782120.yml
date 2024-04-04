@@ -7,4 +7,4 @@
       fetch:
         src: /tmp/aeladawy-rhel9-client.example.com
         dest: /tmp/backup/aeladawy-rhel9-client.example.com
-     # delegate_to: aeladawy-aap24-controller.example.com
+      delegate_to: aeladawy-aap24-controller.example.com
