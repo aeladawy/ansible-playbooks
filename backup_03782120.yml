@@ -5,6 +5,6 @@
   tasks:
     - name: list /tmp
       copy:
-        src: /tmp/aeladawy-rhel9-client.example.com
+        remote_src: /tmp/aeladawy-rhel9-client.example.com
         dest: /tmp/backup/aeladawy-rhel9-client.example.com
       delegate_to: aeladawy-aap24-controller.example.com
