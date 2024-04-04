@@ -7,4 +7,5 @@
       copy:
         src: /tmp/aeladawy-rhel9-client.example.com
         dest: /tmp/backup/
+        remote_src: true
       delegate_to: aeladawy-aap24-controller.example.com
