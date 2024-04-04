@@ -1,8 +1,0 @@
----
-collections:
-- name: infra.aap_utilities
-- name: cloud.common
-  source: "https://galaxy.ansible.com/"
-- name: vmware.vmware_rest
-  version: "3.0.0"
-  source: "https://galaxy.ansible.com/"
