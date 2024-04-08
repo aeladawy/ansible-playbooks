@@ -1,0 +1,7 @@
+---
+# Playbook to backup Automation controller
+
+- name: Backup Automation controller
+  hosts: all
+  roles:
+    - infra.aap_utilities.aap_backup
