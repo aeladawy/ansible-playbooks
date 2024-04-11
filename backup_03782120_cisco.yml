@@ -2,7 +2,7 @@
 - name: collect facts
   gather_facts: false
   hosts: cisco-csr-02
-  connection: local
+  #connection: local
   tasks:
     - name: Get current date
       local_action: command date +%Y-%b-%d
