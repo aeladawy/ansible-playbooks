@@ -1,0 +1,16 @@
+---
+- name: collect facts
+  gather_facts: false
+  hosts: cisco-csr-02
+  tasks:
+    - name: Run show version on remote devices
+      cisco.ios.ios_command:
+        commands: show version
+      register: list_output
+      
+    - name: copy the list
+      copy:
+        content: "{{ list_output.stdout }}"
+        dest: /tmp/backup/files_list.txt
+        #remote_src: true
+      delegate_to: aeladawy-aap24-controller.example.com
