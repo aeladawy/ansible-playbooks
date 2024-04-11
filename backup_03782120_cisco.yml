@@ -3,6 +3,14 @@
   gather_facts: false
   hosts: cisco-csr-02
   tasks:
+    - name: Get current date
+      local_action: command date +%Y-%b-%d
+      register: date
+      
+    - name: Get current time
+      local_action: command date +%H:%M
+      register: time
+      
     - name: Run show version on remote devices
       cisco.ios.ios_command:
         commands: show version
@@ -11,6 +19,6 @@
     - name: copy the list
       copy:
         content: "{{ list_output.stdout }}"
-        dest: "/tmp/backup/conf_backup{{ date }}"
+        dest: /tmp/backup/{{ date.stdout }}_at_{{ time.stdout }}
         #remote_src: true
       delegate_to: aeladawy-aap24-controller.example.com
