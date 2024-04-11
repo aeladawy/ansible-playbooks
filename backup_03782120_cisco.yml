@@ -19,6 +19,6 @@
     - name: copy the list
       copy:
         content: "{{ list_output.stdout }}"
-        dest: /tmp/backup/{{ date.stdout }}_at_{{ time.stdout }}
+        dest: "/tmp/backup/config_backup-{{ date }}"
         #remote_src: true
       delegate_to: aeladawy-aap24-controller.example.com
