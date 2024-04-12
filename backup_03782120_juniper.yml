@@ -3,34 +3,33 @@
   hosts: all
   gather_facts: false
   tasks:
-#    - name: Accept Ansible Net Hostname
-#      junipernetworks.junos.junos_facts:
+    - name: Accept Ansible Net Hostname
+      junipernetworks.junos.junos_facts:
       
-#    - name: View Hostname
-#      debug:
-#        var: ansible_net_hostname
+    - name: View Hostname
+      debug:
+        var: ansible_net_hostname
         
-#    - name: View OS Version
-#      debug:
-#        var: ansible_net_version
+    - name: View OS Version
+      debug:
+        var: ansible_net_version
         
-#    - name: Get current date
-#      local_action: command date +%Y-%b-%d
-#      register: date
+    - name: Get current date
+      local_action: command date +%Y-%b-%d
+      register: date
       
-#    - name: Get current time
-#      local_action: command date +%H:%M
-#      register: time
+    - name: Get current time
+      local_action: command date +%H:%M
+      register: time
       
     - name: Backup running configuration
       junipernetworks.junos.junos_config:
         backup: true
-        backup_options:
-          filename: backup.cfg
-          dir_path: /root/
       register: outp
-      
-    - name: copy to controller
-      copy:
-        content: "{{ outp.backup_path }}"
-        dest: /tmp/backup/backup.out
+
+    - debug:
+        var: outp
+#    - name: copy to controller
+#      copy:
+#        content: "{{ outp.backup_path }}"
+#        dest: /tmp/backup/backup.out
