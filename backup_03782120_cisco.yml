@@ -9,9 +9,15 @@
         commands: show version
       register: list_output
       
-    - name: copy the list
-      copy:
-        content: "{{ list_output.stdout }}"
-        dest: "/tmp/backup/config_backup-{{ date }}"
-        #remote_src: true
-      delegate_to: aeladawy-aap24-controller.example.com
+#    - name: copy the list
+#      copy:
+#        content: "{{ list_output.stdout }}"
+#        dest: "/tmp/backup/config_backup-{{ date }}"
+#        #remote_src: true
+#      delegate_to: aeladawy-aap24-controller.example.com
+- name: copy the variable to file
+  gather_facts: false
+  hosts: aeladawy-aap24-controller.example.com
+  tasks:
+    debug:
+      var: list_output
