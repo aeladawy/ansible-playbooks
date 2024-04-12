@@ -14,13 +14,13 @@
 #      debug:
 #        var: ansible_net_version
         
-    - name: Get current date
-      local_action: command date +%Y-%b-%d
-      register: date
+#    - name: Get current date
+#      local_action: command date +%Y-%b-%d
+#      register: date
       
-    - name: Get current time
-      local_action: command date +%H:%M
-      register: time
+#    - name: Get current time
+#      local_action: command date +%H:%M
+#      register: time
       
     - name: Backup running configuration
       junipernetworks.junos.junos_config:
