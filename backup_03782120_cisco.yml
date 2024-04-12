@@ -1,17 +1,9 @@
 ---
 - name: collect facts
   gather_facts: false
-  hosts: cisco-csr-02
+  hosts: all
   #connection: local
-  tasks:
-    - name: Get current date
-      local_action: command date +%Y-%b-%d
-      register: date
-      
-    - name: Get current time
-      local_action: command date +%H:%M
-      register: time
-      
+  tasks:   
     - name: Run show version on remote devices
       cisco.ios.ios_command:
         commands: show version
