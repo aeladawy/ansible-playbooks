@@ -27,8 +27,11 @@
         backup: true
       register: outp
 
-    - debug:
-        var: outp
+    - name: copy to controller
+      copy:
+        src: "{{ outp.backup_path }}"
+        dest: /tmp/backup/
+
 #    - name: copy to controller
 #      copy:
 #        content: "{{ outp.backup_path }}"
