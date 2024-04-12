@@ -3,28 +3,30 @@
   hosts: all
   gather_facts: false
   tasks:
-#    - name: Accept Ansible Net Hostname
-#      junipernetworks.junos.junos_facts:
-#      
-#    - name: View Hostname
-#      debug:
-#        var: ansible_net_hostname
-#        
-#    - name: View OS Version
-#      debug:
-#        var: ansible_net_version
-#        
-#    - name: Get current date
-#      local_action: command date +%Y-%b-%d
-#      register: date
-#      
-##    - name: Get current time
-#      local_action: command date +%H:%M
-#      register: time
-      
+    - name: Accept Ansible Net Hostname
+      junipernetworks.junos.junos_facts:
+
+    - name: View Hostname
+      debug:
+        var: ansible_net_hostname
+
+    - name: View OS Version
+      debug:
+        var: ansible_net_version
+
+    - name: Get current date
+      local_action: command date +%Y-%b-%d
+      register: date
+
+    - name: Get current time
+      local_action: command date +%H:%M
+      register: time
+
     - name: Backup running configuration
       junipernetworks.junos.junos_config:
         backup: true
+        backup_options:
+          filename: "{{ ansible_net_hostname }}_{{ ansible_host }}.cfg"
       register: outp
 
     - name: copy to controller
@@ -32,10 +34,3 @@
         src: "{{ outp.backup_path }}"
         dest: /repo/
         unsafe_writes: false
-      #  remote_src: true
-      #delegate_to: aeladawy-aap24-controller.example.com
-
-#    - name: copy to controller
-#      copy:
-#        content: "{{ outp.backup_path }}"
-#        dest: /tmp/backup/backup.out
