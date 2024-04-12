@@ -31,6 +31,7 @@
       copy:
         src: "{{ outp.backup_path }}"
         dest: /tmp/backup/
+        unsafe_writes: false
 
 #    - name: copy to controller
 #      copy:
