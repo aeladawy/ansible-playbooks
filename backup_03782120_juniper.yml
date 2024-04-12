@@ -26,7 +26,7 @@
       junipernetworks.junos.junos_config:
         backup: true
         backup_options:
-          filename: "{{ ansible_net_hostname }}_{{ ansible_host }}.cfg"
+          filename: "{{ ansible_net_hostname }}_{{ ansible_host }}_{{ date.stdout }}_at_{{ time.stdout }}.cfg"
       register: outp
 
     - name: copy to controller
