@@ -32,9 +32,7 @@
       register: outp
 
     - name: copy to controller
-      copy:
+      fetch:
         src: "{{ outp.backup_path }}"
         dest: /tmp/backup/
-        remote_src: true
-        unsafe_writes: false
       delegate_to: aeladawy-aap24-controller.example.com
