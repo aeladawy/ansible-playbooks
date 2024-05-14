@@ -2,6 +2,6 @@
 plugin: ibm.power_hmc.powervm_inventory
 use_extra_vars: true
 hmc_hosts:
-  - hmc: "{{ hmc }}"
-    user: "{{ user }}"
-    password: "{{ password }}"
+  - hmc: "{{ lookup('env', 'hmc_host') }}"
+    user: "{{ lookup('env', 'hmc_username') }}"
+    password: "{{ lookup('env', 'hmc_password') }}"
