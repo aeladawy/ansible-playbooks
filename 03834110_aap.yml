@@ -1,0 +1,18 @@
+---
+- name: Send Mail to alert rogue DHCP 
+  hosts: all
+  connection: local
+  gather_facts: false
+  
+  vars: 
+    mailbody: "{{ ansible_eda.event.payload }}"  
+
+  tasks:
+    - name: Sending an e-mail using SMTP servers
+      community.general.mail:
+        host: test.com
+        to: test@test.com
+        from: test@test.com
+        subject: "Ansible report from EDA"
+        body: "{{ mailbody.payload.split(', ') }}"
+      delegate_to: localhost     
