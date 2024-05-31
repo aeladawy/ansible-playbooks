@@ -1,3 +1,5 @@
 ---
 collections:
   - name: infra.aap_utilities
+  - name: redhat.rhel_system_roles
+    version: 1.21.1
