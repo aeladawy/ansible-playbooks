@@ -8,7 +8,7 @@
         username: "admin"
         password: "redhat"
         server_url: "https://sbransible-satellite6.example.com"
-        organization: "redhat"
+        organization: "dorganization"
         label: rhel-8-for-x86_64-appstream-rpms
         validate_certs: false
         repositories:
