@@ -1,0 +1,7 @@
+---
+- name: run test command
+  hosts: all
+  tasks:
+    - name: Run command touch
+      ansible.builtin.command:
+        cmd: touch /tmp/tmp_file1
