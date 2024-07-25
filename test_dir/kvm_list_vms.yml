@@ -1,0 +1,17 @@
+---
+- name: collect facts
+  gather_facts: false
+  hosts: localhost
+  connection: local
+  tasks:
+#    - name: List all VMs
+#      community.libvirt.virt:
+#        uri: 'qemu+ssh://aeladawy@ansible-labs-01.ans.cee.ral3.lab.eng.rdu2.redhat.com/system'
+#        command: list_vms
+#      register: all_vms
+
+    - name: get machine info
+      community.libvirt.virt:
+        uri: 'qemu+ssh://aeladawy@ansible-labs-01.ans.cee.ral3.lab.eng.rdu2.redhat.com/system'
+        command: info
+        name: aeladawy-aap24-db
