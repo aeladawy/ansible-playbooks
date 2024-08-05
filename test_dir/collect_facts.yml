@@ -1,0 +1,10 @@
+---
+- name: collect facts
+  hosts: all
+  serial: 2
+  gather_facts: false
+  tasks:
+    - name: update facts
+      setup:
+    - name: update2 facts2
+      setup:
