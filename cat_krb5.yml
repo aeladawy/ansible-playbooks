@@ -1,0 +1,8 @@
+---
+- name: cat /etc/krb5.conf file
+  gather_facts: false
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: check krb5.conf content
+      ansible.builtin.command: cat /etc/krb5.conf
