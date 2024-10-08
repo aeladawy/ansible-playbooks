@@ -7,5 +7,5 @@
       ansible.builtin.blockinfile:
         path: /etc/ansible/facts.d/pf_toolchain.fact
         marker: "# {mark} toolchain status"
-        block: "status = active"
+        block: "status = false"
         mode: 0644
