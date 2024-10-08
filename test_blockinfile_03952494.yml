@@ -9,3 +9,5 @@
         marker: "# {mark} toolchain status"
         block: "status = false"
         mode: 0644
+    - name: show content
+      ansible.builtin.command: cat /etc/ansible/facts.d/pf_toolchain.fact
