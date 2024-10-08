@@ -1,0 +1,11 @@
+---
+- name: cat /etc/krb5.conf file
+  gather_facts: false
+  hosts: all
+  tasks:
+    - name: Update status - active = active
+      ansible.builtin.blockinfile:
+        path: /etc/ansible/facts.d/pf_toolchain.fact
+        marker: "# {mark} toolchain status"
+        block: "status = active"
+        mode: 0644
