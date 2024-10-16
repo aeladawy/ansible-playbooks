@@ -5,8 +5,4 @@
   connection: local
   tasks:
     - name: task1
-      ansible.builtin.command: cat /etc/krb5.conf
-    - name: task2
-      ansible.builtin.command: ls -l /etc/krb5.conf
-    - name: task3
-      ansible.builtin.command: whoami
+      ansible.builtin.shell: cat /etc/krb5.conf
