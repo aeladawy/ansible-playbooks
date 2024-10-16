@@ -4,5 +4,9 @@
   hosts: localhost
   connection: local
   tasks:
-    - name: check krb5.conf content
-      ansible.builtin.command: cat /etc/krb5.conf && ls -l /etc/krb5.conf && whoami
+    - name: task1
+      ansible.builtin.command: cat /etc/krb5.conf
+    - name: task2
+      ansible.builtin.command: ls -l /etc/krb5.conf
+    - name: task3
+      ansible.builtin.command: whoami
