@@ -3,14 +3,31 @@
   gather_facts: false
   hosts: all
   tasks:
-    - name: Update status - active = active
+    
+    - name: Update status - active to false
       ansible.builtin.blockinfile:
         path: /etc/ansible/facts.d/pf_toolchain.fact
         marker: "# {mark} toolchain status"
         block: "status = false"
         mode: 0644
+
     - name: show content
       ansible.builtin.command: cat /etc/ansible/facts.d/pf_toolchain.fact
-      register: myoutput
+      register: myoutput1
+
     - ansible.builtin.debug:
         msg: "{{ myoutput.stdout }}"
+
+    - name: Update status - false = active
+      ansible.builtin.blockinfile:
+        path: /etc/ansible/facts.d/pf_toolchain.fact
+        marker: "# {mark} toolchain status"
+        block: "status = active"
+        mode: 0644
+
+    - name: show content
+      ansible.builtin.command: cat /etc/ansible/facts.d/pf_toolchain.fact
+      register: myoutput2
+
+    - ansible.builtin.debug:
+        msg: "{{ myoutput2.stdout }}"
