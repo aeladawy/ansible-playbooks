@@ -16,7 +16,7 @@
       register: myoutput1
 
     - ansible.builtin.debug:
-        msg: "{{ myoutput.stdout }}"
+        msg: "{{ myoutput1.stdout }}"
 
     - name: Update status - false = active
       ansible.builtin.blockinfile:
