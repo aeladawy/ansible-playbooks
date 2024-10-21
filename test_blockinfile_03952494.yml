@@ -1,5 +1,5 @@
 ---
-- name: cat /etc/krb5.conf file
+- name: test blockinfile module
   gather_facts: false
   hosts: all
   tasks:
