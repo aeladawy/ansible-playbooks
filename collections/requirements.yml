@@ -2,5 +2,3 @@
 collections:
   - name: ansible.posix
   - name: infra.aap_utilities
-  - name: cisco.aci
-
