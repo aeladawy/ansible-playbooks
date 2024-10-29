@@ -1,0 +1,20 @@
+---
+- name: test blockinfile module
+  gather_facts: false
+  connection: local
+  hosts: localhost
+  tasks:
+    - name: Get the image with latest tag
+      ansible.builtin.uri:
+        url: "https://{{ hub_fqdn }}/api/galaxy/v3/plugin/execution-environments/repositories/{{ container_registry }}/_content/images/ | jq -r '.data[] | select(.tags[]? == "latest") | .digest')"
+        method: GET
+        return_content: true
+        validate_certs: false
+        username: "{{ hub_user }}"
+        password: "{{ hub_user_password }}"
+      register: latest_image_digest
+
+    - ansible.builtin.debug:
+        msg: "{{ latest_image_digest.stdout }}"
+
+  
