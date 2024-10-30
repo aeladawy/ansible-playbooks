@@ -11,6 +11,8 @@ echo
 # Get the digest of image with tags set to latest (to skip later)
 latest_tag_image=$(curl -s -k -u ${hub_user}:${hub_password} https://${hub}/api/galaxy/v3/plugin/execution-environments/repositories/${container_reg}/_content/images/ | jq -r '.data[] | select(.tags[]? == "latest") | .digest') 
 
+[[ -z "$latest_tag_image" ]] && { echo "No images with latest tag"; exit 0; }
+
 # Get all images and exclude the latest image tag
 images_to_delete=$(curl -s -k -u ${hub_user}:${hub_password} https://${hub}/api/galaxy/v3/plugin/execution-environments/repositories/${container_reg}/_content/images/ | jq -r '.data[] | .digest' | grep -v $latest_tag_image)
 
