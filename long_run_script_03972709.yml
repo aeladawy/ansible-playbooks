@@ -8,3 +8,5 @@
         echo "finished" >> /tmp/tst.log
       args:
         executable: /bin/bash
+      async: 0
+      poll: 0
