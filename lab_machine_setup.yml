@@ -1,5 +1,5 @@
 ---
-- name: Machine setup
+- name: new Machine setup
   hosts: all
   tasks:
     - name: set hostname
@@ -24,7 +24,14 @@
           - vim
           - mlocate
           - net-tools
+          - chrony
       
+    - name: start and enable chronyd service
+      ansible.builtin.systemd_service:
+        name: chronyd
+        state: started
+        enabled: true
+
     - name: Upgrade all packages
       ansible.builtin.yum:
         name: '*'
