@@ -1,5 +1,4 @@
 ---
 collections:
   - name: infra.aap_utilities
-  - name: infra.convert2rhel
   - name: infra.controller_configuration
