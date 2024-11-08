@@ -1,3 +1,0 @@
----
-plugin: community.libvirt.libvirt
-uri: 'qemu+ssh://root@ansible-labs-01.ans.cee.ral3.lab.eng.rdu2.redhat.com/system'
