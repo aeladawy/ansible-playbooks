@@ -4,7 +4,7 @@
   tasks:
     - name: Launch bash script
       shell: |
-        sleep 1h 10m
+        sleep 10m
         echo "finished" >> /tmp/tst.log
       args:
         executable: /bin/bash
