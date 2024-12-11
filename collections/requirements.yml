@@ -1,6 +1,0 @@
----
-collections:
-  - name: infra.aap_utilities
-  - name: infra.controller_configuration
-  - name: ansible.controller
-#    #version: 4.5.10
