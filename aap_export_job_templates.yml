@@ -10,7 +10,7 @@
       controller_username: "admin"
       controller_password: "redhat"
       validate_certs: false
-      job_templates: "collect facts"
+      job_templates: ['aap backup', 'os update']
     register: templates_export_output
 
 
