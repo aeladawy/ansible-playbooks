@@ -11,3 +11,14 @@
       controller_password: "redhat"
       validate_certs: false
       job_templates: ['collect facts', 'create aap credential']
+      credentials: 'all'
+    register: templates_export_output
+
+
+  - name: import the job_templates
+    ansible.controller.import:
+      controller_host: https://10.1.230.80
+      controller_username: "admin"
+      controller_password: "redhat"
+      validate_certs: false
+      assets: "{{ templates_export_output.assets }}"
