@@ -11,4 +11,3 @@
       controller_password: "redhat"
       validate_certs: false
       job_templates: ['collect facts', 'create aap credential']
-      credentials: 'all'
