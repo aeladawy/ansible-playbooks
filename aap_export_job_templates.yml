@@ -10,6 +10,7 @@
       controller_username: "admin"
       controller_password: "redhat"
       validate_certs: false
+      projects: "My github"
       job_templates: ['aap backup', 'os update']
     register: templates_export_output
 
