@@ -11,6 +11,7 @@
       controller_password: "redhat"
       validate_certs: false
       projects: "My github"
+      inventory: ['aap inventory', 'lab inventory']
       job_templates: ['aap backup', 'os update']
     register: templates_export_output
 
