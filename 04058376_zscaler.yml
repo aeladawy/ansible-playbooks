@@ -2,21 +2,25 @@
 - name: ZIA Fetching
   gather_facts: no
   hosts: localhost
+  connection: local
   # environment:
   #   http_proxy: "{{http_proxy}}"
   #   https_proxy: "{{https_proxy}}"
 
-  vars:
-    zia_location_data: ""
-    zia_cloud:
-      username: "ansible_user"
-      password: "ansible_password"
-      api_key: "api_key"
-      cloud: "zscaler"
+  #vars:
+  #  zia_location_data: ""
+  #  zia_cloud:
+  #    username: "ansible_user"
+  #    password: "ansible_password"
+  #    api_key: "api_key"
+  #    cloud: "zscaler"
 
   tasks:
     - name: Fetching locations from Zscaler ZIA
       zscaler.ziacloud.zia_location_management_info:
-        provider: "{{ zia_cloud }}"  
+        username: "ansible_user"
+        password: "ansible_password"
+        api_key: "api_key"
+        cloud: "zscaler"
       register: zia_locations
-      #ignore_errors: yes
+      ignore_errors: yes
