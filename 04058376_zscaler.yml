@@ -19,4 +19,4 @@
       zscaler.ziacloud.zia_location_management_info:
         provider: "{{ zia_cloud }}"  
       register: zia_locations
-      ignore_errors: yes
+      #ignore_errors: yes
