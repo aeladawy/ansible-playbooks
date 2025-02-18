@@ -23,4 +23,4 @@
         api_key: "api_key"
         cloud: "zscaler"
       register: zia_locations
-      ignore_errors: yes
+
