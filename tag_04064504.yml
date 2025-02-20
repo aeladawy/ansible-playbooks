@@ -2,6 +2,7 @@
 - name: Playbook to test tags
   hosts: localhost
   connection: local
+  gather_facts: false
   tasks:
     - name: tag1 task
       ansible.builtin.debug:
