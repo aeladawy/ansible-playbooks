@@ -10,7 +10,10 @@
     - name: tag1 task
       ansible.builtin.debug:
         msg: "test tag1 task"
-
+      tags: conf
+        
     - name: tag2 task
       ansible.builtin.debug:
         msg: "test tag2 task"
+      tags: web
+
