@@ -4,13 +4,12 @@
   connection: local
   gather_facts: false
   tasks:
-   - name: Ping my hosts
-     ansible.builtin.ping:
+    - name: Ping my hosts
+      ansible.builtin.ping:
 
     - name: tag1 task
       ansible.builtin.debug:
         msg: "test tag1 task"
-
 
     - name: tag2 task
       ansible.builtin.debug:
