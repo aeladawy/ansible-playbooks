@@ -6,9 +6,9 @@
     - name: tag1 task
       ansible.builtin.debug:
         msg: "test tag1 task"
-      tags: tag1
+      tags: test_tag1
 
     - name: tag2 task
       ansible.builtin.debug:
         msg: "test tag2 task"
-      tags: tag2
+      tags: test_tag2
