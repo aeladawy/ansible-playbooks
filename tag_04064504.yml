@@ -1,0 +1,14 @@
+---
+- name: Playbook to test tags
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: tag1 task
+      ansible.builtin.debug:
+        msg: "test tag1 task"
+      tags: tag1
+
+    - name: tag2 task
+      ansible.builtin.debug:
+        msg: "test tag2 task"
+      tags: tag2
