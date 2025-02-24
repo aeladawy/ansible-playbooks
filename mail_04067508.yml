@@ -4,7 +4,7 @@
   - name: Send an email
     mail:
       to: "{{ dest_email }}"
-      username: "{{ sender_email}}"
+      username: "{{ sender_email }}"
       password: "{{ email_password }}"
       host: smtp.gmail.com
       port: 587
