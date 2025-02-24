@@ -3,7 +3,8 @@
   tasks:
   - name: Send an email
     mail:
-      to: ddelafuente@lksnext.com
-      host: mail.orona.com
+      to: test@test.com
+      host: smtp.gmail.com
+      port: 587
       subject: This is the subject
       body: This is the email body
