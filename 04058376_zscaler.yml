@@ -5,7 +5,7 @@
   connection: local
   environment:
     http_proxy: "10.1.230.132:3128"
-    https_proxy: "10.1.230.132:3128"
+    https_proxy: "10.1.230.132:3129"
   vars:
     zia_cloud:
       username: "username_username"
