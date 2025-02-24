@@ -1,0 +1,8 @@
+- hosts: localhost
+  tasks:
+  - name: Send an email
+    mail:
+      to: ddelafuente@lksnext.com
+      host: mail.orona.com
+      subject: This is the subject
+      body: This is the email body
