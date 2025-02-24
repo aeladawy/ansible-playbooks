@@ -1,4 +1,5 @@
 - hosts: localhost
+  connection: local
   tasks:
   - name: Send an email
     mail:
