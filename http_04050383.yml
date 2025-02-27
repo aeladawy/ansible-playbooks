@@ -4,5 +4,4 @@
   gather_facts: false
   tasks:
     - name: test isolated url
-      ansible.builtin.uri:
-        url: http://192.168.200.164
+      command: curl http://192.168.200.164
