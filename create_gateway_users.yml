@@ -9,7 +9,6 @@
     aap_password: redhat
     
   collections:
-    - ansible.controller
     - infra.aap_configuration
 
   pre_tasks:
@@ -18,4 +17,4 @@
       file: "data/aap_user_accounts.yml"
 
   roles:
-    - gateway_users
+    - infra.aap_configuration.gateway_users
