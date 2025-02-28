@@ -1,6 +1,4 @@
 ---
-platform_state: exists
+platform_state: present
 aap_user_accounts:
 - username: jsmith
-- username: jdoe
-- username: admin
