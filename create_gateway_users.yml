@@ -2,22 +2,20 @@
 - name: "Gateway Configuration"
   hosts: localhost
   connection: local
-  collections:
-    - ansible.controller
-    - infra.aap_configuration
   vars:
     aap_hostname: "https://aeladawy-aap25-gateway.example.com"
     aap_validate_certs: no
     aap_username: admin
     aap_password: redhat
-    platform_state: exists
-    aap_user_accounts:
-      - username: jsmith
-        is_superuser: false
-        password: p4ssword
-        email: jsmith@example.com
-      - username: jdoe
-        email: jdoe@example.com
+    
+  collections:
+    - ansible.controller
+    - infra.aap_configuration
+
+  pre_tasks:
+  - name: "pre_tasks: Include all secrets from vault and data to set"
+    include_vars:
+      file: "data/aap_user_accounts.yml"
 
   roles:
     - gateway_users
