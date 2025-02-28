@@ -2,3 +2,4 @@
 collections:
   - name: zscaler.ziacloud
   - name: community.general
+  - name: infra.aap_configuration
