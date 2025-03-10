@@ -1,7 +1,18 @@
 ---
-- name: test url
+#- name: test url
+#  hosts: all
+#  gather_facts: false
+#  tasks:
+#    - name: test isolated url
+#      command: curl http://192.168.200.164
+- name: Test HTTPAPI Connection
   hosts: all
-  gather_facts: false
   tasks:
-    - name: test isolated url
-      command: curl http://192.168.200.164
+    - name: Ping the API
+      ansible.builtin.uri:
+        url: "http://{{ ansible_host }}:{{ ansible_port }}/api/ping"
+        method: GET
+      register: result
+
+    - debug:
+        var: result
