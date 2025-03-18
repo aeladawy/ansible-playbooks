@@ -25,6 +25,7 @@
           - mlocate
           - net-tools
           - chrony
+          - tar
       
     - name: start and enable chronyd service
       ansible.builtin.systemd_service:
