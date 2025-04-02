@@ -1,0 +1,10 @@
+---
+- name: "Test falling asleep"
+  hosts: all
+  tasks:
+    - ansible.builtin.debug:
+        msg: "This is the start, be ready to wait a bit..."
+    - ansible.builtin.pause:
+        minutes: 3
+    - ansible.builtin.debug:
+        msg: "This is the end, my friend... and I want to see your timestamp now please!"
