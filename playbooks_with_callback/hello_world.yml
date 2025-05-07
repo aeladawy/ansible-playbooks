@@ -2,9 +2,11 @@
   hosts: all
   gather_facts: yes
   environment:
-    ANSIBLE_CALLBACK_PLUGINS:
-      - "/runner/project/playbooks_with_callback/callback_plugins/"
-
+#    ANSIBLE_CALLBACK_PLUGINS:
+#      - "/runner/project/playbooks_with_callback/callback_plugins/"
+    ANSIBLE_CALLBACKS_ENABLED:
+      - profile_tasks
+      - timer
   
   tasks:
     - name: Hello Message
