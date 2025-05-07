@@ -2,9 +2,11 @@
   hosts: all
   gather_facts: yes
   environment:
-    ANSIBLE_CALLBACKS_ENABLED: 
-      - ansible.posix.timer
-      - ansible.posix.profile_tasks
+    ANSIBLE_CALLBACK_PLUGINS: 
+      - /runner/project/plugins/callback/
+#    ANSIBLE_CALLBACKS_ENABLED: 
+#      - ansible.posix.timer
+#      - ansible.posix.profile_tasks
   
   tasks:
     - name: Hello Message
