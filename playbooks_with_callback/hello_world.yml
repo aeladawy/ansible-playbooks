@@ -5,8 +5,8 @@
 #    ANSIBLE_CALLBACK_PLUGINS:
 #      - "/runner/project/playbooks_with_callback/callback_plugins/"
     ANSIBLE_CALLBACKS_ENABLED:
-      - profile_tasks
-      - timer
+      - profile_tasks_new
+      - timer_new
   
   tasks:
     - name: Hello Message
