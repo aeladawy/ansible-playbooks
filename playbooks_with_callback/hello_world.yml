@@ -1,0 +1,10 @@
+- name: Hello World Sample
+  hosts: all
+  gather_facts: yes
+#  environment:
+#   ANSIBLE_CALLBACKS_ENABLED: "timer, profile_tasks"
+  
+  tasks:
+    - name: Hello Message
+      debug:
+        msg: "{{ hello_message }}"
