@@ -1,8 +1,10 @@
 - name: Hello World Sample
   hosts: all
   gather_facts: yes
-#  environment:
-#   ANSIBLE_CALLBACKS_ENABLED: "timer, profile_tasks"
+  environment:
+    ANSIBLE_CALLBACK_PLUGINS:
+      - "/runner/project/playbooks_with_callback/callback_plugins/"
+
   
   tasks:
     - name: Hello Message
