@@ -2,7 +2,7 @@
   hosts: all
   gather_facts: yes
   environment:
-    ansible.posix.profile_tasks
+    ANSIBLE_CALLBACKS_ENABLED: ansible.posix.profile_tasks
   
   tasks:
     - name: Hello Message
