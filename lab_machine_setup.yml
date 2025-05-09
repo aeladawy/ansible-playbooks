@@ -12,9 +12,9 @@
       ansible.builtin.command: subscription-manager register --org=1979710 --activationkey=aeladawy-tower-ak --force
       when: ansible_distribution == "RedHat"    
 
-    - name: register the machine
-      ansible.builtin.command: subscription-manager  release --set=9.4
-      when: ansible_distribution_major_version == "9"
+#    - name: register the machine
+#      ansible.builtin.command: subscription-manager  release --set=9.4
+#      when: ansible_distribution_major_version == "9"
       
     - name: Set authorized key
       ansible.posix.authorized_key:
