@@ -15,7 +15,12 @@
 #    - name: register the machine
 #      ansible.builtin.command: subscription-manager  release --set=9.4
 #      when: ansible_distribution_major_version == "9"
-      
+
+#    - name: Edit /etc/hosts
+#      ansible.builtin.lineinfile:
+#        path: /etc/hosts
+#        line: 192.168.1.99 foo.lab.net foo
+        
     - name: Set authorized key
       ansible.posix.authorized_key:
         user: root
