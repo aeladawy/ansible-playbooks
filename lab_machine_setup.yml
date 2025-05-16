@@ -30,6 +30,7 @@
           - net-tools
           - chrony
           - tar
+          - wget
       
     - name: start and enable chronyd service
       ansible.builtin.systemd_service:
