@@ -14,7 +14,7 @@
 
     - name: Get machine IP
       ansible.builtin.command: ip -br a | grep -v lo | awk -F' ' '{print$3}' | awk '{sub("/.*", "");print $0;}'
-      register: mymotd
+      register: machine_ip
       
 #    - name: register the machine
 #      ansible.builtin.command: subscription-manager  release --set=9.4
