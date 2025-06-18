@@ -12,9 +12,9 @@
       ansible.builtin.command: subscription-manager register --org=1979710 --activationkey=aeladawy-tower-ak --force
       when: ansible_distribution == "RedHat"    
 
-    - name: Get machine IP
-      ansible.builtin.command: ip -br a | grep -v lo | awk -F' ' '{print$3}' | awk '{sub("/.*", "");print $0;}'
-      register: machine_ip
+#    - name: Get machine IP
+#      ansible.builtin.command: ip -br a | grep -v lo | awk -F' ' '{print$3}' | awk '{sub("/.*", "");print $0;}'
+#      register: machine_ip
       
 #    - name: register the machine
 #      ansible.builtin.command: subscription-manager  release --set=9.4
