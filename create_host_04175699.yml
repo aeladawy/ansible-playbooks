@@ -1,0 +1,21 @@
+- name: Add a host to AAP inventory
+  hosts: localhost
+  gather_facts: false
+  vars:
+    controller_host: https://aeladawy-aap25-gateway.example.com/
+    controller_oauthtoken: **removed for security**
+    inventory_name: "New Builds"
+    new_host_name: "my-new-host"
+    new_host_variables: |
+      ansible_user: awx
+      ansible_port: 22
+
+  tasks:
+    - name: Add host to inventory
+      ansible.controller.host:
+        name: "{{ new_host_name }}"
+        inventory: "{{ inventory_name }}"
+        controller_host: "{{ controller_host }}"
+        controller_oauthtoken: "{{ controller_oauthtoken }}"
+        validate_certs: false
+        state: present
