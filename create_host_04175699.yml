@@ -3,7 +3,7 @@
   gather_facts: false
   vars:
     controller_host: https://aeladawy-aap25-gateway.example.com/
-    controller_oauthtoken: **removed for security**
+    controller_oauthtoken: "{{ user_token_write }}"
     inventory_name: "New Builds"
     new_host_name: "my-new-host"
     new_host_variables: |
