@@ -1,0 +1,8 @@
+---
+- name: Handle Unhealthy Service Event
+  hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: Print service issue
+      debug:
+        msg: "test"
