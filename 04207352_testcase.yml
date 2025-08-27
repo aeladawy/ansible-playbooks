@@ -1,0 +1,7 @@
+---
+- name: Infra Dispatch role
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  roles:
+    - name: infra.aap_configuration.dispatch 
