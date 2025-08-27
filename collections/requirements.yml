@@ -1,4 +1,12 @@
 ---
 collections:
   - name: infra.aap_configuration
+  - name: ansible.controller
+  - name: ansible.hub
+  - name: ansible.platform
+  - name: awx.awx
+  - name: cloud.common
+  - name: community.general
+  - name: ansible.controller
+  - name: kubernetes.core
   - name: infra.aap_utilities
