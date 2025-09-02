@@ -20,12 +20,13 @@
 #      ansible.builtin.command: subscription-manager  release --set=9.4
 #      when: ansible_distribution_major_version == "9"
 
-#    - name: Edit /etc/hosts
-#      ansible.builtin.lineinfile:
-#        path: /etc/hosts
-#        line: 192.168.1.99 foo.lab.net foo
-#         state: present
-#         insertafter: EOF
+    - name: Append multiple entries to /etc/hosts
+      blockinfile:
+        path: /etc/hosts
+        block: "{{ hosts_block }}"
+        marker: "# {mark} ANSIBLE MANAGED HOSTS"
+      ignore_errors: yes
+      when: hosts_block is defined and hosts_block | length > 0
         
     - name: Set authorized key
       ansible.posix.authorized_key:
