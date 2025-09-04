@@ -1,0 +1,12 @@
+- name: Create token
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: Create a new token using username/password
+      ansible.platform.token:
+        description: '{{ test creating token using ansible.platform.token module }}'
+        scope: "write"
+        state: present
+        aap_hostname: "{{ aap_gateway }}"
+        aap_username: "{{ my_username }}"
+        aap_password: "{{ my_password }}"
