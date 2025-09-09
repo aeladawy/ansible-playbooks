@@ -3,12 +3,12 @@
   connection: local
   gather_facts: false
   tasks:
-    - name: test tag1
-      debug:
+    - name: tag1 task
+      ansible.builtin.debug:
         msg: "This is tag1"
-      tag: tag1
-
-    - name: test tag2
-      debug:
-        msg: "This is tag2"
-      tag: tag2
+      tags: tag1
+        
+    - name: tag2 task
+      ansible.builtin.debug:
+        msg: "this is tag2"
+      tags: tag2
