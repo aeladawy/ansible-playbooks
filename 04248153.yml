@@ -1,0 +1,25 @@
+- name: Onboard Product Team in AAP
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  tasks:
+  - name: Create Organization for Product
+    ansible.platform.organization:
+      name: "{{ Product }}"
+      description: 'Organization for "{{ Product }}"'
+      aap_hostname: "{{ HOST }}"
+      aap_username: "{{ USERNAME }}"
+      aap_token: "{{ TOKEN }}"
+      state: present
+    register: org_name
+          
+  - name: Create Team for Organization
+    ansible.platform.team:
+      name: "{{ team_name }}"
+      description: 'Team for "{{ Product }}"'
+      aap_hostname: "{{ HOST }}"
+      aap_username: "{{ USERNAME }}"
+      aap_token: "{{ TOKEN }}"
+      organization: "{{ Product }}"
+      state: present
+    register: team_name
