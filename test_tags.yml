@@ -1,0 +1,14 @@
+- name: Test tags
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  tasks:
+    - name: test tag1
+      debug:
+        msg: "This is tag1"
+      tag: tag1
+
+    - name: test tag2
+      debug:
+        msg: "This is tag2"
+      tag: tag2
