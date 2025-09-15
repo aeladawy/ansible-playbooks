@@ -1,12 +1,4 @@
-ungrouped:
-  hosts:
-    test1.example.com:
-webservers:
-  hosts:
-    test2.example.com:
-    test3.example.com:
-dbservers:
-  hosts:
-    test4.example.com:
-    test5.example.com:
-    test6.example.com:
+host1-04254257
+host2-04254257
+host3-04254257
+host4-04254257
