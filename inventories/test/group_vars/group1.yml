@@ -1,9 +1,4 @@
 ---
-inventory_all__ansible_temp_dir: "ansible_topics_tmp"
-inventory_all__file_mode: "0644"
-inventory_all__directory_mode: "0755"
-inventory_all__csv_dir: "files/csv"
-inventory_all__travic_dir_path: "/opt/travic"
 inventory_all__script_dir: "bin"
 inventory_all__job_server_command_path: "{{ inventory_all__travic_dir_path }}/run/job-server/tph-job-server.sh"
 # see: https://kfw-f-jirap2.kfw.kfwgruppe.net/browse/ZVBBSER-6173
