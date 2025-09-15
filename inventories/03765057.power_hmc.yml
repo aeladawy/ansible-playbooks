@@ -1,7 +1,0 @@
-# The most minimal example, targeting only a single HMC
-plugin: ibm.power_hmc.powervm_inventory
-use_extra_vars: true
-hmc_hosts:
-  - hmc: "{{ lookup('env', 'hmc_host') }}"
-    user: "{{ lookup('env', 'hmc_username') }}"
-    password: "{{ lookup('env', 'hmc_password') }}"
