@@ -1,15 +1,4 @@
 ---
-inventory_all__job_server_command_path: "{{ inventory_all__travic_dir_path }}/run/job-server/tph-job-server.sh"
-inventory_all__directory_import_csv: "import/csv"
-inventory_all__directory_temp: "tmp"
-inventory_all_csv_files__global_csv_files_path_list:
-  - "{{ inventory_all__csv_dir }}/TPHUSER.csv"
-  - "{{ inventory_all__csv_dir }}/USERSETTING.csv"
-
-inventory_all__initialization_topic_exceptions_list:
-  - "BOOKINGRULES"
-  - "NAVBANKS"
-
 inventory_all__initialization_basedata_order:
   - "SST_42_TARGET2-Bestand_FileIn"
   - "SST_43_Bank_Directory_Plus-Bestand_FileIn" # (1. BankDirectoryPlus – 2. Currency -  3. Holiday)
