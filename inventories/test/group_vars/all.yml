@@ -11,3 +11,4 @@ inventory_all__initialization_basedata_order:
   - "SST_51_Zusatz-Kontenbestand-FileIn"
   - "SST_56_RMA-Bestand_FileIn"
   - "SST_49_Bundesbank_SCL-Bestand_FileIn"
+inventory_all__script_dir: "bin"
