@@ -1,18 +1,2 @@
 ---
 inventory_all__script_dir: "bin"
-inventory_all__remove_id_from_csv_exception_list:
-  - "UNIT.csv"
-  - "BANK_PAIR_CORRESPOND.csv"
-  - "CHAN_FORWARD.csv"
-  - "CONFIG.csv"
-  - "CUST_RATE_SPREAD.csv"
-  - "EMBARGO_BIC.csv"
-  - "EMBARGO_IBAN.csv"
-  - "NAVIGATOR_RULE.csv"
-  - "NAV_RULE_DELIVERY_METHOD.csv"
-  - "NAV_RULE_EXCLUSIONS.csv"
-  - "NAV_RULE_PREFERENCES.csv"
-  - "PAYMENT_CAT.csv"
-  - "REORG_CONF.csv"
-  - "REORG_CONF_FINALIZE.csv"
-  - "WFA.csv"
