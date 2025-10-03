@@ -1,4 +1,9 @@
-- name: Expose target host
-  set_stats:
-    data:
-      target_host: "10.1.230.71"
+---
+- name: Simulate VM creation
+  hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: Expose target host
+      set_stats:
+        data:
+          target_host: "10.1.230.71"
