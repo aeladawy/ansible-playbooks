@@ -1,5 +1,5 @@
 - name: Onboard Product Team in AAP
-  hosts: {{ new_machine }}
+  hosts: "{{ new_machine }}"
   gather_facts: false
   tasks:
     - name: Collect specific facts
