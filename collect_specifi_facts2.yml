@@ -1,0 +1,19 @@
+- name: Onboard Product Team in AAP
+  hosts: {{ new_machine }}
+  gather_facts: false
+  tasks:
+    - name: Collect specific facts
+      ansible.builtin.setup:
+        gather_subset:
+          - '!all'
+          - system
+          - devices
+          - distribution
+          - distribution_major_version
+          - distribution_release
+          - distribution_version
+          - processor
+          - mounts
+          - interfaces
+          - lsb
+          - virtualization_type
