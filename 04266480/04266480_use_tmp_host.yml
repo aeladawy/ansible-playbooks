@@ -1,0 +1,7 @@
+---
+- name: Use temporary hosts
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Test connectivity
+      ping:
