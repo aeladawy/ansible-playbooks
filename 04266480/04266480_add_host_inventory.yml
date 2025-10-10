@@ -11,6 +11,7 @@
       - name: "{{ vmname }}"
         enabled: true
         inventory: "04266480 inventory"
+        groups: "new_machine_group"
         variables:
           ansible_host: "{{ vmname_ip }}"
 
