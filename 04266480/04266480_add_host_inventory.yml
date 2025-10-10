@@ -1,31 +1,37 @@
 ---
-- name: Add host to current inventory 
+- name: Onboard Product Team in AAP
   hosts: localhost
   connection: local
   gather_facts: false
   vars:
-    aap_hostname: "{{ gateway_host }}"
+    aap_hostname: "{{ gateway-host }}"
     aap_username: admin
-    aap_password: "{{ gateway_admin_password }}"
+    aap_password: "{{ gateway-admin-password }}"
     controller_hosts:
       - name: "{{ vmname }}"
-        enabled: true
         inventory: "04266480 inventory"
-        groups: "new_machine_group"
         variables:
           ansible_host: "{{ vmname_ip }}"
+    controller_groups:
+      - name: "new_machine_group"
+        inventory: "04266480 inventory"
+        hosts:
+          - "{{ vmname }}"
 
   roles:
     - {role: infra.aap_configuration.controller_hosts, when: controller_hosts is defined}
 
-  tasks:
-    - name: Add the new host to tmp inventory
-      add_host:
-        name: "{{ vmname }}"
-        ansible_host: "{{ vmname_ip }}"
-        groups: temp_hosts
+  roles:
+    - {role: infra.aap_configuration.controller_host_groups, when: controller_groups is defined}
 
-    - name: Set fact to mark completion
-      set_stats:
-        data:
-          temp_inventory_ready: true
+#  tasks:
+#    - name: Add the new host to tmp inventory
+#      add_host:
+#        name: "{{ vmname }}"
+#        ansible_host: "{{ vmname_ip }}"
+#        groups: temp_hosts
+
+#    - name: Set fact to mark completion
+#      set_stats:
+#        data:
+#          temp_inventory_ready: true
