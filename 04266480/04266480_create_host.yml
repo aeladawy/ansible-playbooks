@@ -1,0 +1,9 @@
+---
+- name: Onboard Product Team in AAP
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  tasks:
+    - name: Create host with variable vmname
+      debug:
+        msg: Host {{ vmname }} has been created
