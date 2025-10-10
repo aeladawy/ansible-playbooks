@@ -9,6 +9,7 @@
     aap_password: "{{ gateway-admin-password }}"
     controller_hosts:
       - name: "{{ vmname }}"
+        enabled: true
         inventory: "04266480 inventory"
         variables:
           ansible_host: "{{ vmname_ip }}"
