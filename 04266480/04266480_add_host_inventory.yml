@@ -4,9 +4,9 @@
   connection: local
   gather_facts: false
   vars:
-    aap_hostname: "{{ gateway-host }}"
+    aap_hostname: "{{ gateway_host }}"
     aap_username: admin
-    aap_password: "{{ gateway-admin-password }}"
+    aap_password: "{{ gateway_admin_password }}"
     controller_hosts:
       - name: "{{ vmname }}"
         inventory: "04266480 inventory"
