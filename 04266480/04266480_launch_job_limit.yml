@@ -1,0 +1,13 @@
+---
+- name: Onboard Product Team in AAP
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  vars:
+    aap_hostname: "{{ gateway_host }}"
+    aap_username: admin
+    aap_password: "{{ gateway_admin_password }}"
+    controller_launch_jobs:
+      - name: "04266480_use_tmp_host"
+        inventory: "04266480 inventory"
+        limit: "{{ vmname }}"
