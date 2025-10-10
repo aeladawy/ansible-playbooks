@@ -1,6 +1,6 @@
 ---
 - name: Use temporary hosts
-  hosts: temp_hosts
+  hosts: all
   gather_facts: false
   tasks:
     - name: Test connectivity
