@@ -9,7 +9,6 @@
     aap_password: "{{ gateway_admin_password }}"
     controller_launch_jobs:
       - name: "04266480_use_tmp_host"
-        inventory: "04266480 inventory"
         limit: "{{ vmname }}"
 
   roles:
