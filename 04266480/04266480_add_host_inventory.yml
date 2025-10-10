@@ -1,5 +1,5 @@
 ---
-- name: Onboard Product Team in AAP
+- name: Add host to current inventory 
   hosts: localhost
   connection: local
   gather_facts: false
