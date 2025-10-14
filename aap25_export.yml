@@ -1,0 +1,13 @@
+- name: Playbook to export an AAP resource to file
+  hosts: localhost
+  environment:
+    CONTROLLER_OPTIONAL_API_URLPATTERN_PREFIX: '/api/controller/'
+    #AWXKIT_API_BASE_PATH: '/api/controller/'
+  tasks:
+    - name: Export projects
+      ansible.controller.export:
+        controller_host: "{{ controller_name }}"
+        controller_password: "{{ controller_pass }}"
+        controller_username: "{{ controller_user }}"
+        all: true
+        validate_certs: false 
