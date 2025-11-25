@@ -1,8 +1,0 @@
----
-collections:
-  - name: infra.aap_configuration
-  - name: ansible.hub
-  - name: ansible.platform
-  - name: cloud.common
-  - name: kubernetes.core
-  - name: infra.aap_utilities
