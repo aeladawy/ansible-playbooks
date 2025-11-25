@@ -1,8 +1,20 @@
 ---
-- name: test roles call
+- name: Configure time synchronization using NTP
   hosts: all
+  become: true
   gather_facts: false
-  tasks:
-    - name: include timesync roles
-      include_role:
-        name: support.test.timesync
+  vars:
+    # List of NTP servers to configure
+    timesync_ntp_servers:
+      - hostname: 0.pool.ntp.org
+        iburst: yes
+      - hostname: 1.pool.ntp.org
+        iburst: yes
+      - hostname: 2.pool.ntp.org
+        iburst: yes
+
+    # Optional: specify provider (chrony is default on RHEL9)
+    timesync_provider: chrony
+
+  roles:
+    - redhat.rhel_system_roles.timesync
