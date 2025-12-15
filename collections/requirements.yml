@@ -1,5 +1,6 @@
 ---
 collections:
+  - name: redhat.satellite
   - name: ansible.controller
   - name: ansible.hub
   - name: ansible.platform
