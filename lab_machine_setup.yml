@@ -44,6 +44,20 @@
           - tar
           - wget
           - policycoreutils-python-utils
+      when: ansible_distribution_major_version | int <= 9
+
+
+    - name: Install packages
+      ansible.builtin.yum:
+        name:
+          - vim
+          - plocate
+          - net-tools
+          - chrony
+          - tar
+          - wget
+          - policycoreutils-python-utils
+      when: ansible_distribution_major_version | int >= 10
       
     - name: start and enable chronyd service
       ansible.builtin.systemd_service:
