@@ -1,7 +1,5 @@
 ---
 collections:
-  - name: redhat.satellite
-    version: 4.2.0
   - name: ansible.controller
   - name: ansible.hub
   - name: ansible.platform
