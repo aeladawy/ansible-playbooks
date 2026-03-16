@@ -1,0 +1,9 @@
+- name: test playbook
+  hosts: all
+  gather_facts: false
+
+  tasks:
+  - name: Copy using inline content
+    ansible.builtin.copy:
+      content: 'test file'
+      dest: /tmp/testfile.txt
