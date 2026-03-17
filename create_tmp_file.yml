@@ -1,6 +1,6 @@
 - name: test playbook
   hosts: all
-  gather_facts: false
+  #gather_facts: false
 
   tasks:
   - name: Copy using inline content
