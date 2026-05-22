@@ -1,5 +1,5 @@
 [all:vars]
-ansible_host=192.168.1.50
+ansible_host=10.1.230.240
 
 [group_001]
 host-[0001:0050].example.com
