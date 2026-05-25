@@ -1,35 +1,39 @@
 ---
 - name: new Machine setup
   hosts: all
+  become: true
   vars:
     is_containerized: null
     ansible_user_password: null
+    public_key: null
+    hosts_block: null
 
   tasks:
-    - name: set hostname
+    # Set machine hostname , needs a survey to be created on AAP (required)
+    - name: set machine hostname
       ansible.builtin.hostname:
         name: "{{ new_machine_hostname }}"
+      when: new_machine_hostname is defined and new_machine_hostname | length > 0
       notify:
         - reboot the machine
       tags:
         - reboot
-
+    
+    # Register the machine using pre-existed activation key https://console.redhat.com/insights/connector/activation-keys
     - name: register the machine
       ansible.builtin.command: subscription-manager register --org=1979710 --activationkey=aeladawy-tower-ak --force
-      when: ansible_distribution == "RedHat"    
+      when: ansible_os_family == "RedHat" and ansible_distribution == "RedHat"    
+      changed_when: true
 
-#    - name: Get machine IP
-#      ansible.builtin.command: ip -br a | grep -v lo | awk -F' ' '{print$3}' | awk '{sub("/.*", "");print $0;}'
-#      register: machine_ip
-
-    - name: Add the machine IP and hostname to /etc/hosts
+    - name: Add the machine IP, FQDN, and hostname to /etc/hosts
       ansible.builtin.lineinfile:
         path: /etc/hosts
         state: present
-        line: "{{ ansible_default_ipv4.address }} {{ ansible_fqdn }}"
+        line: "{{ ansible_default_ipv4.address }} {{ ansible_fqdn }} {{ ansible_hostname }}"
         regexp: "^{{ ansible_default_ipv4.address }}"
         backup: yes
 
+    # A survey/job template var can be created to add multiple lines to /etc/hosts
     - name: Append multiple entries to /etc/hosts
       blockinfile:
         path: /etc/hosts
@@ -38,14 +42,16 @@
       ignore_errors: yes
       when: hosts_block is defined and hosts_block | length > 0
         
+    # Add ssh public key to root user if you want to login without password
     - name: Set authorized key for user root
       ansible.posix.authorized_key:
         user: root
         key: "{{ public_key }}"  
         state: present
+      when: public_key is defined and public_key | length > 0
         
-    - name: Install packages
-      ansible.builtin.yum:
+    - name: Install essential packages
+      ansible.builtin.package:
         name:
           - vim
           - rsync
@@ -55,21 +61,7 @@
           - tar
           - wget
           - policycoreutils-python-utils
-      when: ansible_distribution_major_version | int <= 9
-
-
-    - name: Install packages
-      ansible.builtin.yum:
-        name:
-          - vim
-          - rsync
-          - plocate
-          - net-tools
-          - chrony
-          - tar
-          - wget
-          - policycoreutils-python-utils
-      when: ansible_distribution_major_version | int >= 10
+          - "{{ 'plocate' if (ansible_distribution_major_version | int >= 10) else 'mlocate' }}"
       
     - name: start and enable chronyd service
       ansible.builtin.systemd_service:
@@ -79,14 +71,15 @@
 
     - name: Prepare the machine for AAP containerized installation
       block:
+        # Create ansible_user to be later used by the containerized installation , password can be set using a survey or job template var
         - name: Ensure 'ansible_user' exists (with or without a password)
           ansible.builtin.user:
             name: "ansible_user"
             # If password exists, hash it. If not, omit the password parameter entirely.
             password: >-
               {{ (ansible_user_password | password_hash('sha512')) 
-                if (ansible_user_password is defined and ansible_user_password | length > 0) 
-                else omit }}
+              if (ansible_user_password is defined and ansible_user_password | length > 0) 
+              else omit }}
             state: present
             shell: /bin/bash
 
@@ -105,7 +98,7 @@
             line: "ansible_user ALL=(ALL) NOPASSWD: ALL"
             validate: '/usr/sbin/visudo -cf %s'
 
-        - name: Install packages
+        - name: Install packages for containerized installation
           ansible.builtin.yum:
             name:
               - ansible-core
