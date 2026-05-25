@@ -103,7 +103,7 @@
               - ansible-core
               - git-core
 
-      when: is_containerized is defined and is_containerized | length > 0
+      when: is_containerized is defined and is_containerized | bool
 
     - name: Upgrade all packages
       ansible.builtin.yum:
