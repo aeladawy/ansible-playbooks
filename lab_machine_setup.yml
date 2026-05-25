@@ -26,7 +26,7 @@
       ansible.builtin.lineinfile:
         path: /etc/hosts
         state: present
-        line: "{{ ansible_default_ipv4.address }} {{ ansible_hostname }}"
+        line: "{{ ansible_default_ipv4.address }} {{ ansible_fqdn }}"
         regexp: "^{{ ansible_default_ipv4.address }}"
         backup: yes
 
