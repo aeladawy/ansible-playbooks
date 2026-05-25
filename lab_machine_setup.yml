@@ -3,6 +3,7 @@
   hosts: all
   vars:
     is_containerized: null
+    ansible_user_password: null
 
   tasks:
     - name: set hostname
@@ -10,6 +11,8 @@
         name: "{{ new_machine_hostname }}"
       notify:
         - reboot the machine
+      tags:
+        - reboot
 
     - name: register the machine
       ansible.builtin.command: subscription-manager register --org=1979710 --activationkey=aeladawy-tower-ak --force
@@ -26,7 +29,7 @@
         line: "{{ ansible_default_ipv4.address }} {{ ansible_hostname }}"
         regexp: "^{{ ansible_default_ipv4.address }}"
         backup: yes
-        
+
     - name: Append multiple entries to /etc/hosts
       blockinfile:
         path: /etc/hosts
@@ -76,9 +79,14 @@
 
     - name: Prepare the machine for AAP containerized installation
       block:
-        - name: Create ansible_user
+        - name: Ensure 'ansible_user' exists (with or without a password)
           ansible.builtin.user:
             name: "ansible_user"
+            # If password exists, hash it. If not, omit the password parameter entirely.
+            password: >-
+              {{ (ansible_user_password | password_hash('sha512')) 
+                if (ansible_user_password is defined and ansible_user_password | length > 0) 
+                else omit }}
             state: present
             shell: /bin/bash
 
@@ -111,6 +119,9 @@
         state: latest
       notify:
         - reboot the machine
+      tags:
+        - update packages
+        - reboot
 
   handlers:
     - name: reboot the machine
