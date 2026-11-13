@@ -21,7 +21,7 @@
     
     # Register the machine using pre-existed activation key https://console.redhat.com/insights/connector/activation-keys
     - name: register the machine
-      ansible.builtin.command: subscription-manager register --org=1979710 --activationkey=aeladawy-tower-ak --force
+      ansible.builtin.command: subscription-manager register --org={{ organization_id }} --activationkey={{ activation_key }} --force
       when: ansible_os_family == "RedHat" and ansible_distribution == "RedHat"    
       changed_when: true
 
